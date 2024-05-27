@@ -1,4 +1,6 @@
 
+#include <fmt/format.h>
+
 #include "synapse/status.h"
 #include "synapse/node.h"
 #include "synapse/signal_chain.h"
@@ -7,7 +9,8 @@
 
 int main()
 {
-    int i = 0;
-    i++;
-    return i;
+  int i = 0;
+  i++;
+  fmt::println("hi! i = {}", i);
+  return i;
 }
