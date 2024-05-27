@@ -1,7 +1,6 @@
 #ifndef SYNAPSE_STREAM_IN_H_
 #define SYNAPSE_STREAM_IN_H_
 
-#include "synapse/node.h"
 #include <vector>
 #include <cstdint>
 

@@ -1,8 +1,6 @@
-
 #ifndef SYNAPSE_SPIKE_DETECT_H_
 #define SYNAPSE_SPIKE_DETECT_H_
 
-#include "synapse/node.h"
 #include <vector>
 #include <cstdint>
 
@@ -10,7 +8,7 @@ enum class spikeDetectMode : uint8_t {
   kSpikeDetectThreshold = 0,
   kSpikeDetectTemplate = 1,
   kSpikeDetectWavelet = 2,
-}
+};
 
 struct SpikeDetectInfo {
   std::vector<spikeDetectMode> mode;

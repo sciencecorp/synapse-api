@@ -1,7 +1,16 @@
 #ifndef SYNAPSE_NODE_H_
 #define SYNAPSE_NODE_H_
 
-#include <synapse/utils.h>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
+#include <variant>
+
+#include "synapse/status.h"
+
+// nodes
 #include "synapse/nodes/stream_in.h"
 #include "synapse/nodes/stream_out.h"
 #include "synapse/nodes/electrical_broadband.h"
@@ -9,16 +18,7 @@
 #include "synapse/nodes/optical_broadband.h"
 #include "synapse/nodes/optical_stim.h"
 #include "synapse/nodes/spike_detect.h"
-#include "synapse/nodes/inference.h"
 #include "synapse/nodes/spectral_filter.h"
-#include "synapse/nodes/camera.h"
-
-#include <map>
-#include <memory>
-#include <string>
-#include <utility>
-#include <vector>
-#include <variant>
 
 namespace synapse {
 
@@ -43,15 +43,13 @@ enum class DataType {
   kImage = 4,
 };
 
-std::variant<StreamInInfo, StreamOutInfo, ElectricalBroadbandInfo, 
+using NodeInfo = std::variant<StreamInInfo, StreamOutInfo, ElectricalBroadbandInfo, 
              ElectricalStimInfo, OpticalBroadbandInfo, OpticalStimInfo, 
-             SpikeDetectInfo, InferenceInfo, SpectralFilterInfo, 
-             CameraInfo> NodeInfo;
+             SpikeDetectInfo, SpectralFilterInfo>;
 
-std::variant<StreamInConfig, StreamOutConfig, ElectricalBroadbandConfig,
+using NodeConfig = std::variant<StreamInConfig, StreamOutConfig, ElectricalBroadbandConfig,
              ElectricalStimConfig, OpticalBroadbandConfig, OpticalStimConfig,
-             SpikeDetectConfig, InferenceConfig, SpectralFilterConfig,
-             CameraConfig> NodeConfig;
+             SpikeDetectConfig, SpectralFilterConfig>;
 
 class Node {
  public:
@@ -60,20 +58,20 @@ class Node {
 
   [[nodiscard]] NodeType get_node_type() const { return node_type_; }
 
-  virtual nodeInfo      get_valid_config() const = 0;
-  virtual nodeConfig           get_config() const = 0;
-  [[nodiscard]] virtual status set_config(NodeConfig config) = 0;
+  virtual NodeInfo      get_valid_config() const = 0;
+  virtual NodeConfig           get_config() const = 0;
+  [[nodiscard]] virtual Status set_config(NodeConfig config) = 0;
 
-  [[nodiscard]] virtual std::vector<NodeConnectionType> get_input_type() const = 0;
-  [[nodiscard]] virtual std::vector<NodeConnectionType> get_output_type() const = 0;
+  [[nodiscard]] virtual std::vector<DataType> get_input_dtype() const = 0;
+  [[nodiscard]] virtual std::vector<DataType> get_output_dtype() const = 0;
 
  private:
-  nodeType node_type_;
-  nodeInfo node_config_options_;
-  nodeConfig node_config_;
+  NodeType node_type_;
+  NodeInfo node_config_options_;
+  NodeConfig node_config_;
 
-  std::vector<NodeConnectionType> input_type_;
-  std::vector<NodeConnectionType> output_type_;
+  std::vector<DataType> input_dtype_;
+  std::vector<DataType> output_dtype_;
 
 };
 }  // namespace synapse

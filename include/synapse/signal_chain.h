@@ -5,8 +5,9 @@
 #include <cstdint>
 #include <atomic>
 #include <map>
-#include <synapse/node.h>
-#include <synapse/nodes/output_node.h>
+
+#include "synapse/status.h"
+#include "synapse/node.h"
 
 namespace synapse {
 
@@ -17,22 +18,22 @@ struct Connection {
 
 class SignalChain {
  public:
-  status add_node(NodeConfig node_config, uint32_t *node_id);
-  status remove_node(uint32_t node_id);
+  Status add_node(NodeConfig node_config, uint32_t *node_id);
+  Status remove_node(uint32_t node_id);
 
-  status connect(uint32_t from_id, uint32_t to_id);
+  Status connect(uint32_t from_id, uint32_t to_id);
 
   std::vector<Connection> get_connections(uint32_t node_id);
 
   std::map<uint32_t, NodeConfig> get_node_configs();
 
-  status validate();
+  Status validate();
 
   bool empty();
 
  private:
 
-  std::map<uint32_t, std::shared_ptr<Node>> nodes_;
+  std::map<uint32_t, std::shared_ptr<Node> > nodes_;
   std::vector<Connection> connections_;
 };
 
