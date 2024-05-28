@@ -10,20 +10,20 @@
 
 #include <iostream>
 #include <grpcpp/grpcpp.h>
-#include "synapse_server.h"
+#include "synapse_daemon.h"
 
 void RunServer() {
-    std::string server_address("0.0.0.0:50052");
+    std::string daemon_address("0.0.0.0:50052");
     SynapseServerImpl service;
 
     grpc::ServerBuilder builder;
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+    builder.AddListeningPort(daemon_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
 
-    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address << std::endl;
+    std::unique_ptr<grpc::Server> daemon(builder.BuildAndStart());
+    std::cout << "Server listening on " << daemon_address << std::endl;
 
-    server->Wait();
+    daemon->Wait();
 }
 
 int main(int argc, char** argv) {

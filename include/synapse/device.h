@@ -65,10 +65,10 @@ class Device {
  private:
   DeviceInfo info_;
 
-  std::atomic<bool> is_initialized_{false}; // set in init, else start will fail
+  std::atomic<bool> initialized_{false}; // set in init, else start will fail
 
   SignalChain signal_chain_;
-  std::atomic<bool> is_streaming_{false};
+  std::atomic<bool> streaming_{false};
 
 };
 

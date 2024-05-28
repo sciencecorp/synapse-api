@@ -20,6 +20,14 @@ set(PROTO_FILES
     ${CMAKE_SOURCE_DIR}/proto/signal_chain.proto
     ${CMAKE_SOURCE_DIR}/proto/device.proto
     ${CMAKE_SOURCE_DIR}/proto/synapse.proto
+    ${CMAKE_SOURCE_DIR}/proto/electrical_broadband.proto
+    ${CMAKE_SOURCE_DIR}/proto/electrical_stim.proto
+    ${CMAKE_SOURCE_DIR}/proto/optical_broadband.proto
+    ${CMAKE_SOURCE_DIR}/proto/optical_stim.proto
+    ${CMAKE_SOURCE_DIR}/proto/spectral_filter.proto
+    ${CMAKE_SOURCE_DIR}/proto/spike_detect.proto
+    ${CMAKE_SOURCE_DIR}/proto/stream_in.proto
+    ${CMAKE_SOURCE_DIR}/proto/stream_out.proto
 )
 
 # Ensure the protobuf and grpc plugins are found
@@ -69,20 +77,21 @@ foreach(proto_file ${PROTO_FILES})
     list(APPEND GRPC_HDRS ${grpc_hdr})
 endforeach()
 
-include_directories(${CMAKE_BINARY_DIR}/proto) # Generated proto files
+# Include generated proto files
+include_directories(${CMAKE_BINARY_DIR}/proto) 
 
 # Source files
 set(SOURCES
     src/synapse.cpp
     src/device.cpp
-    tests/synapse_server.cpp
+    tests/synapse_daemon.cpp
     ${PROTO_SRCS}
     ${GRPC_SRCS}
 )
 
 # Executable
 add_executable(libsynapse ${SOURCES} tests/client_main.cpp)
-add_executable(server ${SOURCES} tests/server_main.cpp)
+add_executable(daemon ${SOURCES} tests/daemon_main.cpp)
 
 # Link libraries
 target_link_libraries(libsynapse 
@@ -94,7 +103,7 @@ target_link_libraries(libsynapse
 
                   
 # Link libraries
-target_link_libraries(server
+target_link_libraries(daemon
                       PRIVATE 
                       fmt::fmt
                       gRPC::grpc++

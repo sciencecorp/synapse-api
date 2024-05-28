@@ -3,6 +3,16 @@ syntax = "proto3";
 
 package proto_synapse;
 
+import "stream_in.proto";
+import "stream_out.proto";
+import "electrical_broadband.proto";
+import "electrical_stim.proto";
+import "optical_broadband.proto";
+import "optical_stim.proto";
+import "spike_detect.proto";
+import "spectral_filter.proto";
+
+
 enum NodeType {
   kStreamIn = 0;
   kStreamOut = 1;
@@ -21,22 +31,16 @@ enum DataType {
   kTimestamps = 3;
 }
 
-message dummyOneOf {
-    uint32 u8_hi = 1;
-    uint32 u8_hi2 = 2;
-}
-
 message NodeInfo {
     oneof info {
-        dummyOneOf dummy = 1;
-        // StreamInInfo stream_in = 2;
-        // StreamOutInfo stream_out = 3;
-        // ElectricalBroadbandInfo electrical_broadband = 4;
-        // ElectricalStimInfo electrical_stim = 5;
-        // OpticalBroadbandInfo optical_broadband = 6;
-        // OpticalStimInfo optical_stim = 7;
-        // SpikeDetectInfo spike_detect = 8;
-        // SpectralFilterInfo spectral_filter = 9;
+        StreamInInfo stream_in = 1;
+        StreamOutInfo stream_out = 2;
+        ElectricalBroadbandInfo electrical_broadband = 3;
+        ElectricalStimInfo electrical_stim = 4;
+        OpticalBroadbandInfo optical_broadband = 5;
+        OpticalStimInfo optical_stim = 6;
+        SpikeDetectInfo spike_detect = 7;
+        SpectralFilterInfo spectral_filter = 8;
     }
 }
 

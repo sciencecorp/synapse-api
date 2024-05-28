@@ -1,0 +1,13 @@
+
+syntax = "proto3";
+
+package proto_synapse;
+
+message StreamOutInfo{
+  uint32 ch_count = 1;
+}
+
+message StreamOutConfig {
+  repeated bool ch_mask = 1;
+}
+

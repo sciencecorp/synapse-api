@@ -5,9 +5,9 @@
 #include <cstdint>
 
 enum class spikeDetectMode : uint8_t {
-  kSpikeDetectThreshold = 0,
-  kSpikeDetectTemplate = 1,
-  kSpikeDetectWavelet = 2,
+  kThreshold = 0,
+  kTemplate = 1,
+  kWavelet = 2,
 };
 
 struct SpikeDetectInfo {
