@@ -24,7 +24,7 @@ configure:
 
 .PHONY: build
 build:
-	cmake --build --preset debug --target libsynapse
+	cmake --build --preset debug --target libsynapse --target axon
 
 .PHONY: install
 install:

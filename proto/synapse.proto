@@ -7,7 +7,7 @@ import "node.proto";
 
 service SynapseServer {
 
-  rpc ListDevices(ListDevicesRequest) returns (DeviceInfo) {}
+  rpc ListDevices(ListDevicesRequest) returns (stream DeviceInfo) {}
 
 //  rpc AddNode(AddNodeRequest) returns (StatusMessage) {}
 //  rpc RemoveNode(RemoveNodeRequest) returns (StatusMessage) {}
