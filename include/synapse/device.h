@@ -9,6 +9,7 @@
 #include "synapse/node.h"
 #include "synapse/signal_chain.h"
 
+
 namespace synapse {
 
 struct SynapsePeripheral;
@@ -30,8 +31,11 @@ struct DeviceStatus {
 
 class Device {
  public:
-   Device(std::string path) : path_(path) {}
-
+  Device(const DeviceInfo& info);
+  Device(const Device& other) = default;  // Copy constructor
+  Device(Device&& other) = default;       // Move constructor
+  ~Device() = default;
+    
   Status init();
   Status start();
   Status stop();
@@ -59,7 +63,7 @@ class Device {
   Status get_config(SignalChain *signal_chain);
 
  private:
-  std::string path_;
+  DeviceInfo info_;
 
   std::atomic<bool> is_initialized_{false}; // set in init, else start will fail
 

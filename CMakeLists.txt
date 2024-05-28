@@ -73,15 +73,16 @@ include_directories(${CMAKE_BINARY_DIR}/proto) # Generated proto files
 
 # Source files
 set(SOURCES
-    src/synapse_client.cpp
+    src/synapse.cpp
+    src/device.cpp
     tests/synapse_server.cpp
     ${PROTO_SRCS}
     ${GRPC_SRCS}
 )
 
 # Executable
-add_executable(libsynapse ${SOURCES} tests/server_main.cpp)
-add_executable(axon ${SOURCES} src/client_main.cpp)
+add_executable(libsynapse ${SOURCES} tests/client_main.cpp)
+add_executable(server ${SOURCES} tests/server_main.cpp)
 
 # Link libraries
 target_link_libraries(libsynapse 
@@ -93,7 +94,7 @@ target_link_libraries(libsynapse
 
                   
 # Link libraries
-target_link_libraries(axon 
+target_link_libraries(server
                       PRIVATE 
                       fmt::fmt
                       gRPC::grpc++

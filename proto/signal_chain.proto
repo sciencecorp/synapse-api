@@ -1,2 +1,5 @@
 
 syntax = "proto3";
+
+package proto_synapse;
+

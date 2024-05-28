@@ -10,7 +10,13 @@
 #include "synapse/signal_chain.h"
 #include "synapse/device.h"
 
+#include <grpcpp/grpcpp.h>
+#include "synapse.grpc.pb.h"
+
+
 namespace synapse {
+
+class Device;
 
 struct SynapsePeripheral {
   NodeType peripheral_type;
@@ -18,9 +24,15 @@ struct SynapsePeripheral {
   NodeInfo peripheral_info;
 };
 
+class Synapse {
+public:
+    Synapse(std::shared_ptr<grpc::Channel> channel);
 
-// Discover availible devices and enumerate the tree of each one
-Status list_devices(std::vector<std::unique_ptr<Device>> *devices);
+    Status list_devices(std::vector<std::unique_ptr<Device>> *devices);
+
+private:
+    std::unique_ptr<proto_synapse::SynapseServer::Stub> stub_;
+};
 
 // TODO: helper to convert buf to *data_type
 
