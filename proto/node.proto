@@ -1,0 +1,40 @@
+
+syntax = "proto3";
+
+enum NodeType {
+  kStreamIn = 0;
+  kStreamOut = 1;
+  kElectricalBroadband = 2;
+  kElectricalStim = 3;
+  kOpticalBroadband = 4;
+  kOpticalStim = 5;
+  kSpikeDetect = 6;
+  kSpectralFilter = 7;
+}
+
+enum DataType {
+  kAny = 0; 
+  kBroadband = 1;
+  kSpiketrain = 2;
+  kTimestamps = 3;
+}
+
+message dummyOneOf {
+    uint32 u8_hi = 1;
+    uint32 u8_hi2 = 2;
+}
+
+message NodeInfo {
+    oneof info {
+        dummyOneOf dummy = 1;
+        // StreamInInfo stream_in = 2;
+        // StreamOutInfo stream_out = 3;
+        // ElectricalBroadbandInfo electrical_broadband = 4;
+        // ElectricalStimInfo electrical_stim = 5;
+        // OpticalBroadbandInfo optical_broadband = 6;
+        // OpticalStimInfo optical_stim = 7;
+        // SpikeDetectInfo spike_detect = 8;
+        // SpectralFilterInfo spectral_filter = 9;
+    }
+}
+

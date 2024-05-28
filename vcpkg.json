@@ -11,7 +11,9 @@
   "name": "libsynapse",
   "version": "0.1.0",
   "dependencies": [
-    "fmt"
+    "fmt",
+    "grpc",
+    "protobuf"
   ],
   "features": {
     "tests": {

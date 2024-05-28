@@ -30,9 +30,7 @@ enum class NodeType : uint8_t {
   kOpticalBroadband = 4,
   kOpticalStim = 5,
   kSpikeDetect = 6,
-  kInference = 7,
-  kSpectralFilter = 8,
-  kCamera = 9,
+  kSpectralFilter = 7,
 };
 
 enum class DataType {

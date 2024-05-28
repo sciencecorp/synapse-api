@@ -1,0 +1,31 @@
+
+syntax = "proto3";
+
+import "device.proto";
+import "signal_chain.proto";
+import "node.proto";
+
+service SynapseServer {
+
+  rpc ListDevices(ListDevicesRequest) returns (DeviceInfo) {}
+
+//  rpc AddNode(AddNodeRequest) returns (StatusMessage) {}
+//  rpc RemoveNode(RemoveNodeRequest) returns (StatusMessage) {}
+//  rpc Connect(ConnectRequest) returns (StatusMessage) {}
+//  rpc GetConnections(GetConnectionsRequest) returns () {}
+//  rpc GetNodeConfigs(GetNodeConfigsRequest) returns (GetNodeConfigsResponse) {}
+//  rpc Validate(ValidateRequest) returns (ValidateResponse) {}
+//
+//  rpc Init(InitRequest) returns (InitResponse) {}
+//  rpc Start(StartRequest) returns (StartResponse) {}
+//  rpc Stop(StopRequest) returns (StopResponse) {}
+//  rpc Read(ReadRequest) returns (ReadResponse) {}
+//  rpc Write(WriteRequest) returns (WriteResponse) {}
+//  rpc GetInfo(GetInfoRequest) returns (GetInfoResponse) {}
+//  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {}
+//  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {}
+//
+}
+
+message ListDevicesRequest {
+}

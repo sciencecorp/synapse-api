@@ -7,6 +7,8 @@
 #include "synapse/synapse.h"
 #include "synapse/device.h"
 
+#include "synapse.pb.h"
+
 int main()
 {
   int i = 0;
