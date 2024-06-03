@@ -1,7 +1,6 @@
-
 syntax = "proto3";
 
-package proto_synapse;
+package synapse;
 
 message StreamInInfo{
   repeated uint32 shape = 1;

@@ -1,12 +1,11 @@
-
 syntax = "proto3";
 
-package proto_synapse;
+package synapse;
 
 enum SpikeDetectMode {
-    kThreshold = 0;
-    kTemplate = 1;
-    kWavelet = 2;
+  kThreshold = 0;
+  kTemplate = 1;
+  kWavelet = 2;
 }
 
 message SpikeDetectInfo {

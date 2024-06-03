@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package synapse;
+
+import "nodes/stream_in.proto";
+import "nodes/stream_out.proto";
+import "nodes/electrical_broadband.proto";
+import "nodes/electrical_stim.proto";
+import "nodes/optical_broadband.proto";
+import "nodes/optical_stim.proto";
+import "nodes/spike_detect.proto";
+import "nodes/spectral_filter.proto";
+
+
+enum NodeType {
+  kStreamIn = 0;
+  kStreamOut = 1;
+  kElectricalBroadband = 2;
+  kElectricalStim = 3;
+  kOpticalBroadband = 4;
+  kOpticalStim = 5;
+  kSpikeDetect = 6;
+  kSpectralFilter = 7;
+}
+
+enum DataType {
+  kAny = 0; 
+  kBroadband = 1;
+  kSpiketrain = 2;
+  kTimestamps = 3;
+}
+
+message NodeInfo {
+  NodeType type = 1;
+  uint32 id = 2;
+  oneof info {
+      StreamInInfo stream_in = 3;
+      StreamOutInfo stream_out = 4;
+      ElectricalBroadbandInfo electrical_broadband = 5;
+      ElectricalStimInfo electrical_stim = 6;
+      OpticalBroadbandInfo optical_broadband = 7;
+      OpticalStimInfo optical_stim = 8;
+      SpikeDetectInfo spike_detect = 9;
+      SpectralFilterInfo spectral_filter = 10;
+  }
+}
+
+message NodeConnection {
+  uint32 src_node_id = 1;
+  uint32 dst_node_id = 2;
+}

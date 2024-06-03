@@ -1,7 +1,6 @@
-
 syntax = "proto3";
 
-package proto_synapse;
+package synapse;
 
 message OpticalStimInfo {
   uint32 pixel_count = 1;

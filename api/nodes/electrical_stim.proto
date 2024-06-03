@@ -1,7 +1,6 @@
-
 syntax = "proto3";
 
-package proto_synapse;
+package synapse;
 
 message ElectricalStimInfo {
   uint32 ch_count = 1;
