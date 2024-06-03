@@ -1,7 +1,18 @@
 #ifndef SYNAPSE_DEVICE_H_
 #define SYNAPSE_DEVICE_H_
 
+#include <atomic>
+#include <vector>
+
+#include "synapse/status.h"
+#include "synapse/synapse.h"
+#include "synapse/node.h"
+#include "synapse/signal_chain.h"
+
+
 namespace synapse {
+
+struct SynapsePeripheral;
 
 struct DeviceInfo {
   std::string name;
@@ -15,16 +26,19 @@ struct DeviceInfo {
 
 struct DeviceStatus {
   bool is_streaming;
-  std::vector<NodeStatus> nodes;
+  std::vector<NodeInfo> nodes;
 };
 
 class Device {
  public:
-   Device(std::string path) : path_(path) {}
-
-  status init();
-  status start();
-  status stop();
+  Device(const DeviceInfo& info);
+  Device(const Device& other) = default;  // Copy constructor
+  Device(Device&& other) = default;       // Move constructor
+  ~Device() = default;
+    
+  Status init();
+  Status start();
+  Status stop();
 
   // fill up to `buf_len` bytes into the memory starting at `buf`;
   // populates `read_len` with the actual number of bytes written
@@ -32,7 +46,7 @@ class Device {
   // node's circular buffer between reads, if any.
   // `data_lost` resets after every read call.
   // The format of the data is determined by the `data_type` parameter.
-  status read(uint32_t node_id,
+  Status read(uint32_t node_id,
               uint16_t *buf,
               uint32_t buf_len,
               DataType *data_type,
@@ -40,21 +54,21 @@ class Device {
               uint32_t *data_lost);
 
   // write `data_len` bytes starting from `data` to `node_id`
-  status write(uint32_t node_id, int32_t *data, uint32_t data_len);
+  Status write(uint32_t node_id, int32_t *data, uint32_t data_len);
 
-  std::optional<DeviceInfo> get_info();
-  std::optional<DeviceStatus> get_status();
+  Status get_info(DeviceInfo *device_info);
+  Status get_status(DeviceStatus *device_status);
 
-  status set_config(const SignalChain *signal_chain);
-  std::optional<SignalChain> get_config();
+  Status set_config(SignalChain *signal_chain);
+  Status get_config(SignalChain *signal_chain);
 
  private:
-  std::string path_;
+  DeviceInfo info_;
 
-  std::atomic<bool> is_initialized_{false}; // set in init, else start will fail
+  std::atomic<bool> initialized_{false}; // set in init, else start will fail
 
   SignalChain signal_chain_;
-  std::atomic<bool> is_streaming_{false};
+  std::atomic<bool> streaming_{false};
 
 };
 

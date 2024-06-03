@@ -1,8 +1,6 @@
-
 #ifndef SYNAPSE_NODES_ELEC_BROADBAND_H_
 #define SYNAPSE_NODES_ELEC_BROADBAND_H_
 
-#include "synapse/node.h"
 #include <vector>
 #include <cstdint>
 
