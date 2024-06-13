@@ -16,10 +16,10 @@ message StatusResponse {
 }
 
 message SynapsePeripheral {
-    NodeType peripheral_type = 1;
-    uint32 peripheral_id = 2;
-    NodeInfo peripheral_info = 3;
-  }
+  NodeType peripheral_type = 1;
+  uint32 peripheral_id = 2;
+  NodeInfo peripheral_info = 3;
+}
 
 message DeviceInfo {
   string name = 1;

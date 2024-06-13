@@ -24,7 +24,7 @@ enum NodeType {
 }
 
 enum DataType {
-  kAny = 0; 
+  kAny = 0;
   kBroadband = 1;
   kSpiketrain = 2;
   kTimestamps = 3;
@@ -34,14 +34,14 @@ message NodeInfo {
   NodeType type = 1;
   uint32 id = 2;
   oneof info {
-      StreamInInfo stream_in = 3;
-      StreamOutInfo stream_out = 4;
-      ElectricalBroadbandInfo electrical_broadband = 5;
-      ElectricalStimInfo electrical_stim = 6;
-      OpticalBroadbandInfo optical_broadband = 7;
-      OpticalStimInfo optical_stim = 8;
-      SpikeDetectInfo spike_detect = 9;
-      SpectralFilterInfo spectral_filter = 10;
+    StreamInInfo stream_in = 3;
+    StreamOutInfo stream_out = 4;
+    ElectricalBroadbandInfo electrical_broadband = 5;
+    ElectricalStimInfo electrical_stim = 6;
+    OpticalBroadbandInfo optical_broadband = 7;
+    OpticalStimInfo optical_stim = 8;
+    SpikeDetectInfo spike_detect = 9;
+    SpectralFilterInfo spectral_filter = 10;
   }
 }
 
