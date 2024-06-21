@@ -2,10 +2,6 @@ syntax = "proto3";
 
 package synapse;
 
-message StreamInInfo{
-  repeated uint32 shape = 1;
-}
-
 message StreamInConfig {
   repeated uint32 shape = 1;
 }

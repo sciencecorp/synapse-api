@@ -8,7 +8,7 @@ enum SpikeDetectMode {
   kWavelet = 2;
 }
 
-message SpikeDetectInfo {
+message SpikeDetectOptions {
   repeated SpikeDetectMode mode = 1;
 }
 

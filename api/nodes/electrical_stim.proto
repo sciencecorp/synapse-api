@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package synapse;
 
-message ElectricalStimInfo {
+message ElectricalStimOptions {
   uint32 ch_count = 1;
   repeated uint32 sample_rate = 2;
   repeated uint32 bit_width = 3;

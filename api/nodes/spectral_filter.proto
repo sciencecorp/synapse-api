@@ -9,9 +9,6 @@ enum SpectralFilterMethod {
   kBandStop = 3;
 }
 
-message SpectralFilterInfo {
-}
-
 message SpectralFilterConfig {
   SpectralFilterMethod method = 1;
   uint32 low_cutoff_mHz = 2;
