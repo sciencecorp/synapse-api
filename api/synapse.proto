@@ -17,9 +17,11 @@ message SynapseStatus {
 }
 
 message SynapsePeripheral {
-  NodeType peripheral_type = 1;
-  uint32 peripheral_id = 2;
-  NodeOptions peripheral_info = 3;
+  string name = 1;
+  string vendor = 2;
+  uint32 peripheral_id = 3;
+  NodeType node_type = 4;
+  NodeOptions options = 5;
 }
 
 message DeviceInfo {
