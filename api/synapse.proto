@@ -20,8 +20,7 @@ message SynapsePeripheral {
   string name = 1;
   string vendor = 2;
   uint32 peripheral_id = 3;
-  NodeType node_type = 4;
-  NodeOptions options = 5;
+  NodeOptions options = 4;
 }
 
 message DeviceInfo {
