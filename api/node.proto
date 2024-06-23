@@ -43,6 +43,20 @@ message NodeOptions {
   }
 }
 
+message NodeConfig {
+  NodeType type = 1;
+  uint32 id = 2;
+  oneof config {
+    ElectricalBroadbandConfig electrical_broadband = 3;
+    ElectricalStimConfig electrical_stim = 4;
+    OpticalBroadbandConfig optical_broadband = 5;
+    OpticalStimConfig optical_stim = 6;
+    SpikeDetectConfig spike_detect = 7;
+    StreamOutConfig stream_out = 8;
+    StreamInConfig stream_in = 9;
+  }
+}
+
 message NodeConnection {
   uint32 src_node_id = 1;
   uint32 dst_node_id = 2;

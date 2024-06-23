@@ -32,7 +32,7 @@ message DeviceInfo {
 }
 
 message DeviceConfiguration {
-  repeated NodeOptions nodes = 1;
+  repeated NodeConfig nodes = 1;
   repeated NodeConnection connections = 2;
 }
 
