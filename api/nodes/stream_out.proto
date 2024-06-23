@@ -7,6 +7,6 @@ message StreamOutOptions {
 }
 
 message StreamOutConfig {
-  repeated bool ch_mask = 1;
+  repeated uint32 ch_mask = 1;
 }
 
