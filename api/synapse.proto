@@ -12,7 +12,7 @@ enum SynapseStatusCode {
 
 message SynapseStatus {
   string message = 1;
-  SynapseStatus code = 2;
+  SynapseStatusCode code = 2;
   repeated NodeSocket sockets = 3;
 }
 

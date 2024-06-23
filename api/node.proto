@@ -11,22 +11,24 @@ import "api/nodes/stream_out.proto";
 import "api/nodes/stream_in.proto";
 
 enum NodeType {
-  kStreamIn = 0;
-  kStreamOut = 1;
-  kElectricalBroadband = 2;
-  kElectricalStim = 3;
-  kOpticalBroadband = 4;
-  kOpticalStim = 5;
-  kSpikeDetect = 6;
-  kSpectralFilter = 7;
+  kNodeTypeUnknown = 0;
+  kStreamIn = 1;
+  kStreamOut = 2;
+  kElectricalBroadband = 3;
+  kElectricalStim = 4;
+  kOpticalBroadband = 5;
+  kOpticalStim = 6;
+  kSpikeDetect = 7;
+  kSpectralFilter = 8;
 }
 
 enum DataType {
-  kAny = 0;
-  kBroadband = 1;
-  kSpiketrain = 2;
-  kTimestamps = 3;
-  kImage = 4;
+  kDataTypeUnknown = 0;
+  kAny = 1;
+  kBroadband = 2;
+  kSpiketrain = 3;
+  kTimestamps = 4;
+  kImage = 5;
 }
 
 message NodeOptions {
@@ -64,6 +66,7 @@ message NodeConnection {
 
 message NodeSocket {
   uint32 node_id = 1;
-  uint32 port = 2;
+  string bind = 2;
   DataType data_type = 3;
+  NodeType type = 4;
 }
