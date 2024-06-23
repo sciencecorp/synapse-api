@@ -10,7 +10,7 @@ message OpticalBroadbandOptions {
 }
 
 message OpticalBroadbandConfig {
-  repeated bool pixel_mask = 1;
+  repeated uint32 pixel_mask = 1;
   uint32 bit_width = 2;
   uint32 sample_rate = 3;
   uint32 gain = 4;

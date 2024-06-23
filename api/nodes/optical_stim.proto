@@ -11,7 +11,7 @@ message OpticalStimOptions {
 
 message OpticalStimConfig {
   uint32 peripheral_id = 1;
-  repeated bool pixel_mask = 2;
+  repeated uint32 pixel_mask = 2;
   uint32 bit_width = 3;
   uint32 sample_rate = 4; // frame rate
   uint32 gain = 5;
