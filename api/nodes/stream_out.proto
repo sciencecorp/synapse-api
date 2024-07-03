@@ -8,5 +8,6 @@ message StreamOutOptions {
 
 message StreamOutConfig {
   repeated uint32 ch_mask = 1;
+  string multicast_group = 2;
 }
 
