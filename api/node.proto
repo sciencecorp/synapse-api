@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package synapse;
 
+import "api/datatype.proto";
 import "api/nodes/electrical_broadband.proto";
 import "api/nodes/electrical_stim.proto";
 import "api/nodes/optical_broadband.proto";
@@ -22,14 +23,7 @@ enum NodeType {
   kSpectralFilter = 8;
 }
 
-enum DataType {
-  kDataTypeUnknown = 0;
-  kAny = 1;
-  kBroadband = 2;
-  kSpiketrain = 3;
-  kTimestamps = 4;
-  kImage = 5;
-}
+
 
 message NodeOptions {
   NodeType type = 1;

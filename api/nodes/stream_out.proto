@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package synapse;
+import "api/datatype.proto";
 
 message StreamOutOptions {
   uint32 port = 1;
@@ -10,5 +11,6 @@ message StreamOutConfig {
   repeated uint32 ch_mask = 1;
   string multicast_group = 2;
   uint32 bind = 3;
+  DataType data_type = 4;
 }
 
