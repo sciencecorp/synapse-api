@@ -10,7 +10,7 @@ message StreamOutOptions {
 message StreamOutConfig {
   repeated uint32 ch_mask = 1;
   string multicast_group = 2;
-  string bind = 3;
+  uint32 bind = 3;
   DataType data_type = 4;
 }
 
