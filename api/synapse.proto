@@ -23,6 +23,8 @@ message Status {
   StatusCode code = 2;
   DeviceState state = 3;
   repeated NodeSocket sockets = 4;
+  uint32 battery_level = 5;
+  bool is_charging = 6;
 }
 
 message Peripheral {
