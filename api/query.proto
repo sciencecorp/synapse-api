@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package synapse;
+
+import "api/channel.proto";
+import "api/status.proto";
+
+message SampleQuery {
+  repeated Channel channels = 1;
+  uint32 sample_count = 2;
+}
+
+message ImpedanceQuery {
+  repeated Channel channels = 1;
+}
+
+message QueryRequest {
+  enum QueryType {
+    kNone = 0;
+    kImpedance = 1;
+    kSample = 2;
+  }
+  oneof query {
+    ImpedanceQuery impedance_query = 2;
+    SampleQuery sample_query = 3;
+  }
+}
+
+message QueryResponse {
+  Status status = 1;
+  repeated uint32 data = 2;
+}

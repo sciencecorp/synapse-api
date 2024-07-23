@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package synapse;
+
+message Channel {
+  uint32 probe_electrode_id = 1;
+  uint32 reference_electrode_id = 2;
+}

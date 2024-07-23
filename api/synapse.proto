@@ -4,28 +4,8 @@ package synapse;
 
 import "google/protobuf/empty.proto";
 import "api/node.proto";
-
-enum StatusCode {
-  kOk = 0;
-  kUndefinedError = 1;
-}
-
-enum DeviceState {
-  kUnknown = 0;
-  kInitializing = 1;
-  kStopped = 2;
-  kRunning = 3;
-  kError = 4;
-}
-
-message Status {
-  string message = 1;
-  StatusCode code = 2;
-  DeviceState state = 3;
-  repeated NodeSocket sockets = 4;
-  uint32 battery_level = 5;
-  bool is_charging = 6;
-}
+import "api/query.proto";
+import "api/status.proto";
 
 message Peripheral {
   string name = 1;
@@ -54,4 +34,5 @@ service SynapseDevice {
   rpc Configure(DeviceConfiguration) returns (Status) {}
   rpc Start(google.protobuf.Empty) returns (Status) {}
   rpc Stop(google.protobuf.Empty) returns (Status) {}
+  rpc Query(QueryRequest) returns (QueryResponse) {}
 }
