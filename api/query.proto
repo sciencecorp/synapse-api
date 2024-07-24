@@ -20,6 +20,7 @@ message QueryRequest {
     kImpedance = 1;
     kSample = 2;
   }
+  QueryType query_type = 1;
   oneof query {
     ImpedanceQuery impedance_query = 2;
     SampleQuery sample_query = 3;
