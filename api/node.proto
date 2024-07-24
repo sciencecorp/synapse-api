@@ -7,6 +7,7 @@ import "api/nodes/electrical_broadband.proto";
 import "api/nodes/electrical_stim.proto";
 import "api/nodes/optical_broadband.proto";
 import "api/nodes/optical_stim.proto";
+import "api/nodes/spectral_filter.proto";
 import "api/nodes/spike_detect.proto";
 import "api/nodes/stream_out.proto";
 import "api/nodes/stream_in.proto";
@@ -46,6 +47,7 @@ message NodeConfig {
     OpticalBroadbandConfig optical_broadband = 5;
     OpticalStimConfig optical_stim = 6;
     SpikeDetectConfig spike_detect = 7;
+    SpectralFilterConfig spectral_filter = 10;
     StreamOutConfig stream_out = 8;
     StreamInConfig stream_in = 9;
   }
