@@ -58,7 +58,7 @@ message NodeConnection {
 
 message NodeSocket {
   uint32 node_id = 1;
-  uint32 bind = 2;
+  string bind = 2;
   DataType data_type = 3;
   NodeType type = 4;
 }
