@@ -8,10 +8,18 @@ import "api/query.proto";
 import "api/status.proto";
 
 message Peripheral {
+  enum Type {
+    kUnknown = 0;
+    kElectricalRecord = 1;
+    kElectricalStim = 2;
+    kOpticalStim = 3;
+    kOpticalRecord = 4;
+  }
   string name = 1;
   string vendor = 2;
   uint32 peripheral_id = 3;
   NodeOptions options = 4;
+  Type type = 5;
 }
 
 message DeviceInfo {

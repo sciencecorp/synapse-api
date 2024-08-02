@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package synapse;
 
+import "api/channel.proto";
+
 message ElectricalStimOptions {
   uint32 ch_count = 1;
   repeated uint32 sample_rate = 2;
@@ -11,7 +13,7 @@ message ElectricalStimOptions {
 
 message ElectricalStimConfig {
   uint32 peripheral_id = 1;
-  repeated uint32 ch_mask = 2;
+  repeated Channel chnanels = 2;
   uint32 sample_rate = 3;
   uint32 bit_width = 4;
   uint32 lsb = 5;
