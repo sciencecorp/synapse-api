@@ -24,8 +24,6 @@ enum NodeType {
   kSpectralFilter = 8;
 }
 
-
-
 message NodeOptions {
   NodeType type = 1;
   uint32 id = 2;
@@ -63,4 +61,6 @@ message NodeSocket {
   string bind = 2;
   DataType data_type = 3;
   NodeType type = 4;
+  string label = 5;
+  repeated uint32 shape = 6;
 }
