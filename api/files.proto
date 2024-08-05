@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package synapse;
+
+import "api/status.proto";
+
+message ListFilesResponse {
+  message File {
+    string name = 1;
+    uint32 size = 2;
+    uint32 created = 3;
+    uint32 modified = 4;
+    string type = 5;
+  }
+  repeated File files = 1;
+}
+
+message WriteFileRequest {
+  string name = 1;
+  bytes data = 2;
+}
+
+message WriteFileResponse {
+  string name = 1;
+  uint64 bytes_written = 2;
+}
+
+message ReadFileRequest {
+  string name = 1;
+}
+
+message ReadFileResponse {
+  string name = 1;
+  bytes data = 2;
+  uint32 start_offset = 3;
+  uint32 file_total_length = 4;
+}
+
+message DeleteFileRequest {
+  string name = 1;
+}
+
+message DeleteFileResponse {
+  string name = 1;
+  StatusCode status_code = 2;
+}

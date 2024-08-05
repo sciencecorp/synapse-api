@@ -6,6 +6,7 @@ import "google/protobuf/empty.proto";
 import "api/node.proto";
 import "api/query.proto";
 import "api/status.proto";
+import "api/files.proto";
 
 message Peripheral {
   enum Type {
@@ -43,4 +44,9 @@ service SynapseDevice {
   rpc Start(google.protobuf.Empty) returns (Status) {}
   rpc Stop(google.protobuf.Empty) returns (Status) {}
   rpc Query(QueryRequest) returns (QueryResponse) {}
+
+  rpc ListFiles(google.protobuf.Empty) returns (ListFilesResponse) {}
+  rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
+  rpc ReadFile(ReadFileRequest) returns (stream ReadFileResponse) {}
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
 }
