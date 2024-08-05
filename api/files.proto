@@ -21,27 +21,26 @@ message WriteFileRequest {
 }
 
 message WriteFileResponse {
-  string file_name = 1;
-  Status status = 2;
+  string name = 1;
+  uint64 bytes_written = 2;
 }
 
 message ReadFileRequest {
-  string file_name = 1;
+  string name = 1;
 }
 
 message ReadFileResponse {
-  string file_name = 1;
+  string name = 1;
   bytes data = 2;
-  uint32 starting_byte = 3;
-  uint32 ending_byte = 4;
-  uint32 total_bytes = 5;
+  uint32 start_offset = 3;
+  uint32 file_total_length = 4;
 }
 
 message DeleteFileRequest {
-  string file_name = 1;
+  string name = 1;
 }
 
 message DeleteFileResponse {
-  string file_name = 1;
-  Status status = 2;
+  string name = 1;
+  StatusCode status_code = 2;
 }
