@@ -7,8 +7,8 @@ import "api/nodes/electrical_broadband.proto";
 import "api/nodes/electrical_stim.proto";
 import "api/nodes/optical_broadband.proto";
 import "api/nodes/optical_stim.proto";
-import "api/nodes/spectral_filter.proto";
 import "api/nodes/spike_detect.proto";
+import "api/nodes/spectral_filter.proto";
 import "api/nodes/stream_out.proto";
 import "api/nodes/stream_in.proto";
 
@@ -42,14 +42,14 @@ message NodeConfig {
   NodeType type = 1;
   uint32 id = 2;
   oneof config {
-    ElectricalBroadbandConfig electrical_broadband = 3;
-    ElectricalStimConfig electrical_stim = 4;
-    OpticalBroadbandConfig optical_broadband = 5;
-    OpticalStimConfig optical_stim = 6;
-    SpikeDetectConfig spike_detect = 7;
+    StreamOutConfig stream_out = 3;
+    StreamInConfig stream_in = 4;
+    ElectricalBroadbandConfig electrical_broadband = 5;
+    ElectricalStimConfig electrical_stim = 6;
+    OpticalBroadbandConfig optical_broadband = 7;
+    OpticalStimConfig optical_stim = 8;
+    SpikeDetectConfig spike_detect = 9;
     SpectralFilterConfig spectral_filter = 10;
-    StreamOutConfig stream_out = 8;
-    StreamInConfig stream_in = 9;
   }
 }
 
