@@ -7,6 +7,12 @@ import "api/node.proto";
 enum StatusCode {
   kOk = 0;
   kUndefinedError = 1;
+  kInvalidConfiguration = 2;
+  kFailedPrecondition = 3;
+  kUnimplemented = 4;
+  kInternalError = 5;
+  kPermissionDenied = 6;
+
 }
 
 enum DeviceState {
