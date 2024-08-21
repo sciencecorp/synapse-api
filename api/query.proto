@@ -11,7 +11,7 @@ message SampleQuery {
 }
 
 message ImpedanceQuery {
-  repeated Channel channels = 1;
+  repeated uint32 electrode_ids = 1;
 }
 
 message QueryRequest {
