@@ -9,6 +9,7 @@ message ElectricalBroadbandOptions {
   repeated uint32 bit_width = 2;
   repeated uint32 sample_rate = 3;
   repeated uint32 gain = 4;
+  repeated float lsb_uV = 5;
 }
 
 message ElectricalBroadbandConfig {
