@@ -14,6 +14,16 @@ message ImpedanceQuery {
   repeated uint32 electrode_ids = 1;
 }
 
+message ImpedanceMeasurement {
+  uint32 electrode_id = 1;
+  float magnitude = 2;
+  float phase = 3;
+}
+
+message ImpedanceResponse {
+  repeated ImpedanceMeasurement measurements = 1;
+}
+
 message QueryRequest {
   enum QueryType {
     kNone = 0;
@@ -30,4 +40,7 @@ message QueryRequest {
 message QueryResponse {
   Status status = 1;
   repeated uint32 data = 2;
+  oneof response {
+    ImpedanceResponse impedance_response = 3;
+  }
 }
