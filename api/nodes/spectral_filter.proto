@@ -12,6 +12,6 @@ enum SpectralFilterMethod {
 
 message SpectralFilterConfig {
   SpectralFilterMethod method = 1;
-  uint32 low_cutoff_mHz = 2;
-  uint32 high_cutoff_mHz = 3;
+  float low_cutoff_hz = 2;
+  float high_cutoff_hz = 3;
 }

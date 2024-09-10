@@ -17,4 +17,6 @@ message ElectricalBroadbandConfig {
   uint32 bit_width = 3;
   uint32 sample_rate = 4;
   float gain = 5;
+  float low_cutoff_hz = 6;
+  float high_cutoff_hz = 7;
 }
