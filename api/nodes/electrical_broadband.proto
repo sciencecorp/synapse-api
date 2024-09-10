@@ -8,7 +8,7 @@ message ElectricalBroadbandOptions {
   uint32 ch_count = 1;
   repeated uint32 bit_width = 2;
   repeated uint32 sample_rate = 3;
-  repeated uint32 gain = 4;
+  repeated float gain = 4;
 }
 
 message ElectricalBroadbandConfig {
@@ -16,5 +16,5 @@ message ElectricalBroadbandConfig {
   repeated Channel channels = 2;
   uint32 bit_width = 3;
   uint32 sample_rate = 4;
-  uint32 gain = 5;
+  float gain = 5;
 }
