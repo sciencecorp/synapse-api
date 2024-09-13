@@ -13,7 +13,7 @@ message ElectricalStimOptions {
 
 message ElectricalStimConfig {
   uint32 peripheral_id = 1;
-  repeated Channel chnanels = 2;
+  repeated Channel channels = 2;
   uint32 sample_rate = 3;
   uint32 bit_width = 4;
   uint32 lsb = 5;
