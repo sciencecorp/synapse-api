@@ -17,4 +17,5 @@ message SpikeDetectConfig {
   uint32 threshold_uV = 2;
   repeated uint32 template_uV = 3;
   bool sort = 4;
+  uint32 bin_size_ms = 5;
 }
