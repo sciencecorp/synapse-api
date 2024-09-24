@@ -15,4 +15,5 @@ message SpikeDetectConfig {
     Thresholder thresholder = 1;
     TemplateMatcher template_matcher = 2;
   }
+  uint32 bin_size_ms = 5;
 }
