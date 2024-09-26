@@ -12,7 +12,6 @@ enum StatusCode {
   kUnimplemented = 4;
   kInternalError = 5;
   kPermissionDenied = 6;
-
 }
 
 enum DeviceState {
@@ -23,11 +22,21 @@ enum DeviceState {
   kError = 4;
 }
 
+message DeviceStorage {
+  float total_gb = 1;
+  float used_gb = 2;
+}
+
+message DevicePower {
+  float battery_level_percent = 1;
+  bool is_charging = 2;
+}
+
 message Status {
   string message = 1;
   StatusCode code = 2;
   DeviceState state = 3;
   repeated NodeSocket sockets = 4;
-  uint32 battery_level = 5;
-  bool is_charging = 6;
+  DevicePower power = 5;
+  DeviceStorage storage = 6;
 }
