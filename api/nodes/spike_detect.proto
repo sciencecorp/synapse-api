@@ -2,18 +2,13 @@ syntax = "proto3";
 
 package synapse;
 
-message SpikeDetectOptions {
+message SpikeDetectConfig {
   enum SpikeDetectMode {
     kThreshold = 0;
     kTemplate = 1;
     kWavelet = 2;
   }
-
-  repeated SpikeDetectMode mode = 1;
-}
-
-message SpikeDetectConfig {
-  SpikeDetectOptions.SpikeDetectMode mode = 1;
+  SpikeDetectMode mode = 1;
   uint32 threshold_uV = 2;
   repeated uint32 template_uV = 3;
   bool sort = 4;

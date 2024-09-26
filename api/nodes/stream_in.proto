@@ -5,6 +5,6 @@ import "api/datatype.proto";
 package synapse;
 
 message StreamInConfig {
-  repeated uint32 shape = 1;
-  DataType data_type = 2;
+  DataType data_type = 1;
 }
+g

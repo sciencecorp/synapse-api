@@ -4,6 +4,5 @@ package synapse;
 
 message StreamOutConfig {
   string label = 1;
-  bool use_multicast = 2;
-  string multicast_group = 3;
+  string multicast_group = 2;
 }
