@@ -6,12 +6,7 @@ Synapse uses gRPC for its control plane API and UDP for streaming data. Read the
 
 # Python Installation
 
-Before installing the Synapse Python client library, you will need:
-
-- Python version 3.9 or later.
-- pip version 23 or later.
-
-You can install the official Synapse Python client library using:
+You can install the official [Synapse Python client library](https://github.com/sciencecorp/synapse-python) using:
 
 `pip install science-synapse`
 
