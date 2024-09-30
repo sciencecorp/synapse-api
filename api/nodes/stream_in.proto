@@ -7,4 +7,3 @@ package synapse;
 message StreamInConfig {
   DataType data_type = 1;
 }
-g

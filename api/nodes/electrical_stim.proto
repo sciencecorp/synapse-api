@@ -7,7 +7,7 @@ package synapse;
 message ElectricalStimConfig {
   uint32 peripheral_id = 1;
   repeated Channel channels = 2;
-  uint32 sample_rate = 3;
-  uint32 bit_width = 4;
+  uint32 bit_width = 3;
+  uint32 sample_rate = 4;
   uint32 lsb = 5;
 }
