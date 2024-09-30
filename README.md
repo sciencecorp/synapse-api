@@ -2,7 +2,7 @@
 
 The Synapse Protocol defines a standard interface for interacting with a wide range of possible neural interface devices.
 
-Synapse uses gRPC for its control plane API and UDP for streaming data. Read the full Synapse protocol docs [here](science.xyz/docs/d/synapse/index).
+Synapse uses gRPC for its control plane API and UDP for streaming data. Read the full Synapse protocol docs [here](https://science.xyz/docs/d/synapse/index).
 
 # Python Installation
 
