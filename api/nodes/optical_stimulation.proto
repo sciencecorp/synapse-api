@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package synapse;
 
-message OpticalStimConfig {
+message OpticalStimulationConfig {
   uint32 peripheral_id = 1;
   repeated uint32 pixel_mask = 2;
   uint32 bit_width = 3;

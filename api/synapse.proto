@@ -12,8 +12,8 @@ message Peripheral {
   enum Type {
     kUnknown = 0;
     kElectricalRecord = 1;
-    kElectricalStim = 2;
-    kOpticalStim = 3;
+    kElectricalStimulation = 2;
+    kOpticalStimulation = 3;
     kOpticalRecord = 4;
   }
   string name = 1;

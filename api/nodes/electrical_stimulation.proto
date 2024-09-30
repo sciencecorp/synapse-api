@@ -4,7 +4,7 @@ import "api/channel.proto";
 
 package synapse;
 
-message ElectricalStimConfig {
+message ElectricalStimulationConfig {
   uint32 peripheral_id = 1;
   repeated Channel channels = 2;
   uint32 bit_width = 3;
