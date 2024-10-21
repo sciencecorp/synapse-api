@@ -7,10 +7,13 @@ message SpikeDetectConfig {
     kThreshold = 0;
     kTemplate = 1;
     kWavelet = 2;
+    kAdaptive = 3;
   }
   SpikeDetectMode mode = 1;
   uint32 threshold_uV = 2;
   repeated uint32 template_uV = 3;
   bool sort = 4;
   uint32 bin_size_ms = 5;
+  uint32 rms_epoch_ms = 6;
+  uint32 rms_multiplier = 7;
 }
