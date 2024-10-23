@@ -12,6 +12,7 @@ import "api/nodes/spectral_filter.proto";
 import "api/nodes/stream_out.proto";
 import "api/nodes/stream_in.proto";
 import "api/nodes/disk_writer.proto";
+
 enum NodeType {
   kNodeTypeUnknown = 0;
   kStreamIn = 1;
