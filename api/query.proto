@@ -14,6 +14,10 @@ message ImpedanceQuery {
   repeated uint32 electrode_ids = 1;
 }
 
+message SelfTestQuery {
+  repeated uint32 electrode_ids = 1;
+}
+
 message ImpedanceMeasurement {
   uint32 electrode_id = 1;
   float magnitude = 2;
@@ -24,16 +28,30 @@ message ImpedanceResponse {
   repeated ImpedanceMeasurement measurements = 1;
 }
 
+message SelfTestItem {
+  string test_name = 1;
+  bool passed = 2;
+  repeated uint32 test_data = 3;
+  string test_report = 4;
+}
+
+message SelfTestResponse {
+  bool all_passed = 1;
+  repeated SelfTestItem tests = 2;
+}
+
 message QueryRequest {
   enum QueryType {
     kNone = 0;
     kImpedance = 1;
     kSample = 2;
+    kSelfTest = 3;
   }
   QueryType query_type = 1;
   oneof query {
     ImpedanceQuery impedance_query = 2;
     SampleQuery sample_query = 3;
+    SelfTestQuery self_test_query = 4;
   }
 }
 
@@ -42,5 +60,6 @@ message QueryResponse {
   repeated uint32 data = 2;
   oneof response {
     ImpedanceResponse impedance_response = 3;
+    SelfTestResponse self_test_response = 4;
   }
 }
