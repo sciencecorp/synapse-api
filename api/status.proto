@@ -12,6 +12,7 @@ enum StatusCode {
   kUnimplemented = 4;
   kInternalError = 5;
   kPermissionDenied = 6;
+  kQueryFailed = 7;
 }
 
 enum DeviceState {
