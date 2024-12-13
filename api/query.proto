@@ -15,7 +15,7 @@ message ImpedanceQuery {
 }
 
 message SelfTestQuery {
-  repeated uint32 peripheral_id = 1;
+  uint32 peripheral_id = 1;
 }
 
 message ImpedanceMeasurement {
