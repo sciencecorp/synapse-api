@@ -42,6 +42,15 @@ message NodeConfig {
   }
 }
 
+message NodeStatus {
+  NodeType type = 1;
+  uint32 id = 2;
+  oneof status {
+    StreamOutStatus stream_out = 3;
+    ElectricalBroadbandStatus electrical_broadband = 4;
+  }
+}
+
 message NodeConnection {
   uint32 src_node_id = 1;
   uint32 dst_node_id = 2;

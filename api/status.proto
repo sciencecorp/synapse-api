@@ -33,6 +33,10 @@ message DevicePower {
   bool is_charging = 2;
 }
 
+message SignalChainStatus {
+  repeated NodeStatus nodes = 1;
+}
+
 message Status {
   string message = 1;
   StatusCode code = 2;
@@ -40,4 +44,5 @@ message Status {
   repeated NodeSocket sockets = 4;
   DevicePower power = 5;
   DeviceStorage storage = 6;
+  SignalChainStatus signal_chain = 7;
 }

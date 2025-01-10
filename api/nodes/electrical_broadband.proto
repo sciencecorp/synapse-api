@@ -13,3 +13,7 @@ message ElectricalBroadbandConfig {
   float low_cutoff_hz = 6;
   float high_cutoff_hz = 7;
 }
+
+message ElectricalBroadbandStatus {
+  float lsb_uV = 1;
+}
