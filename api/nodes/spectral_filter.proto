@@ -14,4 +14,5 @@ message SpectralFilterConfig {
   SpectralFilterMethod method = 1;
   float low_cutoff_hz = 2;
   float high_cutoff_hz = 3;
+  float sample_rate_hz = 4;
 }
