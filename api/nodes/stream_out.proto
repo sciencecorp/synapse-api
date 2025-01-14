@@ -6,3 +6,7 @@ message StreamOutConfig {
   string label = 1;
   string multicast_group = 2;
 }
+
+message StreamOutStatus {
+  float throughput_mbps = 1;
+}

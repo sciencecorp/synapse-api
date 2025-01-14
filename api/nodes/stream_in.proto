@@ -8,3 +8,7 @@ message StreamInConfig {
   DataType data_type = 1;
   repeated uint32 shape = 2;
 }
+
+message StreamInStatus {
+  float throughput_mbps = 1;
+}
