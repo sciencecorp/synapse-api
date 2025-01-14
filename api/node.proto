@@ -48,6 +48,8 @@ message NodeStatus {
   oneof status {
     StreamOutStatus stream_out = 3;
     ElectricalBroadbandStatus electrical_broadband = 4;
+    StreamInStatus stream_in = 5;
+    ElectricalStimulationStatus electrical_stimulation = 6;
   }
 }
 

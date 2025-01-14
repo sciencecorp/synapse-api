@@ -11,3 +11,7 @@ message ElectricalStimulationConfig {
   uint32 sample_rate = 4;
   uint32 lsb = 5;
 }
+
+message ElectricalStimulationStatus {
+  float lsb_uV = 1;
+}
