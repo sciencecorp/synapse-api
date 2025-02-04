@@ -3,5 +3,5 @@ syntax = "proto3";
 package synapse;
 
 message SpikeSourceConfig {
-    
+
 }
