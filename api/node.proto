@@ -3,9 +3,8 @@ syntax = "proto3";
 package synapse;
 
 import "api/datatype.proto";
-import "api/nodes/electrical_broadband.proto";
+import "api/nodes/broadband.proto";
 import "api/nodes/electrical_stimulation.proto";
-import "api/nodes/optical_broadband.proto";
 import "api/nodes/optical_stimulation.proto";
 import "api/nodes/spike_detect.proto";
 import "api/nodes/spectral_filter.proto";
@@ -17,13 +16,12 @@ enum NodeType {
   kNodeTypeUnknown = 0;
   kStreamIn = 1;
   kStreamOut = 2;
-  kElectricalBroadband = 3;
+  kBroadband = 3;
   kElectricalStimulation = 4;
-  kOpticalBroadband = 5;
-  kOpticalStimulation = 6;
-  kSpikeDetect = 7;
-  kSpectralFilter = 8;
-  kDiskWriter = 9;
+  kOpticalStimulation = 5;
+  kSpikeDetect = 6;
+  kSpectralFilter = 7;
+  kDiskWriter = 8;
 }
 
 message NodeConfig {
@@ -32,9 +30,8 @@ message NodeConfig {
   oneof config {
     StreamOutConfig stream_out = 3;
     StreamInConfig stream_in = 4;
-    ElectricalBroadbandConfig electrical_broadband = 5;
+    BroadbandConfig broadband = 5;
     ElectricalStimulationConfig electrical_stimulation = 6;
-    OpticalBroadbandConfig optical_broadband = 7;
     OpticalStimulationConfig optical_stimulation = 8;
     SpikeDetectConfig spike_detect = 9;
     SpectralFilterConfig spectral_filter = 10;
@@ -47,7 +44,7 @@ message NodeStatus {
   uint32 id = 2;
   oneof status {
     StreamOutStatus stream_out = 3;
-    ElectricalBroadbandStatus electrical_broadband = 4;
+    BroadbandStatus broadband = 4;
     StreamInStatus stream_in = 5;
     ElectricalStimulationStatus electrical_stimulation = 6;
   }

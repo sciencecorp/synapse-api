@@ -1,0 +1,40 @@
+name: Proto Compilation Check
+
+on:
+  push:
+    paths:
+      - '**.proto'
+  pull_request:
+    paths:
+      - '**.proto'
+
+jobs:
+  check-proto:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Protobuf Compiler
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y protobuf-compiler
+    
+    - name: Check protoc version
+      run: protoc --version
+    
+    - name: Create temp directory for compilation
+      run: mkdir -p /tmp/proto_compiled
+    
+    - name: Compile Proto files
+      run: |
+        # Get the root directory for imports
+        ROOT_DIR=$(pwd)
+        
+        # Compile all proto files while maintaining directory structure
+        find . -name "*.proto" -type f | while read -r file; do
+          protoc \
+            -I="${ROOT_DIR}" \
+            --cpp_out=/tmp/proto_compiled \
+            "${file}"
+        done

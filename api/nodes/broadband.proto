@@ -1,0 +1,51 @@
+syntax  = "proto3";
+
+import "api/channel.proto";
+
+package synapse;
+
+message BroadbandConfig {
+    uint32 peripheral_id = 1;
+    uint32 bit_width = 2;
+
+    // In Hz
+    uint32 sample_rate = 3;
+    float gain = 4;
+
+    // Implementation specific configurations
+    message SignalConfig {
+        oneof signal_type {
+            ElectrodeConfig electrode = 1;
+            PixelConfig pixel = 2;
+        }
+
+        message ElectrodeConfig {
+            repeated Channel channels = 1;
+            float low_cutoff_hz = 2;
+            float high_cutoff_hz = 3;
+        }
+
+        message PixelConfig {
+            repeated uint32 pixel_mask = 1;
+        }
+    }
+    SignalConfig signal = 5;
+}
+
+message BroadbandStatus {
+    message SignalStatus {
+        oneof signal_type {
+            ElectrodeStatus electrode = 1;
+            PixelStatus pixel = 2;
+        }
+
+        message ElectrodeStatus {
+            float lsb_uV = 1;
+        }
+
+        message PixelStatus {
+
+        }
+    }
+    SignalStatus status = 1;
+}
