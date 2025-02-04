@@ -28,13 +28,5 @@ jobs:
     
     - name: Compile Proto files
       run: |
-        # Get the root directory for imports
-        ROOT_DIR=$(pwd)
-        
-        # Compile all proto files while maintaining directory structure
-        find . -name "*.proto" -type f | while read -r file; do
-          protoc \
-            -I="${ROOT_DIR}" \
-            --cpp_out=/tmp/proto_compiled \
-            "${file}"
-        done
+        PROTO_FILES=$(find api -name '*.proto')
+        protoc --proto_path=. $PROTO_FILES --cpp_out=/tmp/proto_compiled

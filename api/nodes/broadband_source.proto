@@ -4,7 +4,7 @@ import "api/channel.proto";
 
 package synapse;
 
-message BroadbandConfig {
+message BroadbandSourceConfig {
     uint32 peripheral_id = 1;
     uint32 bit_width = 2;
 
@@ -32,7 +32,7 @@ message BroadbandConfig {
     SignalConfig signal = 5;
 }
 
-message BroadbandStatus {
+message BroadbandSourceStatus {
     message SignalStatus {
         oneof signal_type {
             ElectrodeStatus electrode = 1;
