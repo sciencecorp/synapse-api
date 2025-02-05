@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "api/channel.proto";
-
 package synapse;
 
 message ElectrodeStatus {
