@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "api/channel.proto";
+
+package synapse;
+
+message ElectrodeConfig {
+    repeated Channel channels = 1;
+    float low_cutoff_hz = 2;
+    float high_cutoff_hz = 3;
+}
+
+message PixelConfig {
+    repeated uint32 pixel_mask = 1;
+}
+
+message SignalConfig {
+    oneof signal_type {
+        ElectrodeConfig electrode = 1;
+        PixelConfig pixel = 2;
+    }
+}
