@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "api/channel.proto";
+
+package synapse;
+
+message ElectrodeStatus {
+    float lsb_uV = 1;
+}
+
+message PixelStatus {
+
+}
+
+message SignalStatus {
+    oneof signal_type {
+        ElectrodeStatus electrode = 1;
+        PixelStatus pixel = 2;
+    }
+}

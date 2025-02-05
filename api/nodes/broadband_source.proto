@@ -2,6 +2,7 @@ syntax  = "proto3";
 
 import "api/channel.proto";
 import "api/nodes/signal_config.proto";
+import "api/nodes/signal_status.proto";
 
 package synapse;
 
@@ -16,19 +17,5 @@ message BroadbandSourceConfig {
 }
 
 message BroadbandSourceStatus {
-    message SignalStatus {
-        oneof signal_type {
-            ElectrodeStatus electrode = 1;
-            PixelStatus pixel = 2;
-        }
-
-        message ElectrodeStatus {
-            float lsb_uV = 1;
-        }
-
-        message PixelStatus {
-
-        }
-    }
     SignalStatus status = 1;
 }
