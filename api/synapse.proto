@@ -11,10 +11,10 @@ import "api/files.proto";
 message Peripheral {
   enum Type {
     kUnknown = 0;
-    kElectricalRecord = 1;
+    kBroadbandSource = 1;
     kElectricalStimulation = 2;
     kOpticalStimulation = 3;
-    kOpticalRecord = 4;
+    kSpikeSource = 4;
   }
   string name = 1;
   string vendor = 2;
