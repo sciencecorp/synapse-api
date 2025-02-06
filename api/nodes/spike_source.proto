@@ -7,10 +7,10 @@ package synapse;
 
 message SpikeSourceConfig {
     uint32 peripheral_id = 1;
-    repeated Channel channels = 2;
+    uint32 sample_rate_hz = 2;
+    float spike_window_ms = 3;
+    float gain = 4;
+    float threshold_uV = 5;
 
-    uint32 sample_rate_hz = 3;
-    float spike_window_ms = 4;
-    float gain = 5;
     ElectrodeConfig electrodes = 6;
 }
