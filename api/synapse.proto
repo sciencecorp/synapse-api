@@ -7,6 +7,7 @@ import "api/node.proto";
 import "api/query.proto";
 import "api/status.proto";
 import "api/files.proto";
+import "api/logging.proto";
 
 message Peripheral {
   enum Type {
@@ -49,4 +50,6 @@ service SynapseDevice {
   rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
   rpc ReadFile(ReadFileRequest) returns (stream ReadFileResponse) {}
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
+  rpc GetLogs(LogQueryRequest) returns (LogQueryResponse) {}
+  rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
 }
