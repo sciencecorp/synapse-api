@@ -14,7 +14,7 @@ enum LogLevel {
 }
 
 message LogEntry {
-    google.protobuf.Timestamp timestamp = 1;
+    uint64 timestamp_ns = 1;
     LogLevel level = 2;
 
     // Which entity is the source of the log (e.g. filename or module name)
@@ -24,10 +24,10 @@ message LogEntry {
 
 message LogQueryRequest {
     // Optional start time, inclusive
-    google.protobuf.Timestamp start_time = 1;
+    uint64 start_time_ns = 1;
 
     // Optional end time, exclusive
-    google.protobuf.Timestamp end_time = 2;
+    uint64 end_time_ns = 2;
 
     // Optional time since current time, in milliseconds
     // Will ignore the start and end time
