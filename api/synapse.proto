@@ -12,10 +12,11 @@ import "api/logging.proto";
 message Peripheral {
   enum Type {
     kUnknown = 0;
-    kBroadbandSource = 1;
-    kElectricalStimulation = 2;
-    kOpticalStimulation = 3;
-    kSpikeSource = 4;
+    kElectricalBroadband = 1;
+    kOpticalBroadband = 2;
+    kElectricalStimulation = 3;
+    kOpticalStimulation = 4;
+    kSpikeSource = 5;
   }
   string name = 1;
   string vendor = 2;
