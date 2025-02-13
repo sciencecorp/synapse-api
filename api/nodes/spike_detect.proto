@@ -13,4 +13,5 @@ message SpikeDetectConfig {
   repeated uint32 template_uV = 3;
   bool sort = 4;
   uint32 bin_size_ms = 5;
+  float input_sample_rate_hz = 6;
 }
