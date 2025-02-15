@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package synapse;
 
-import "google/protobuf/timestamp.proto";
-
 enum LogLevel {
     LOG_LEVEL_UNKNOWN = 0;
     LOG_LEVEL_DEBUG = 1;
