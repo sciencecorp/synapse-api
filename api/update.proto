@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package synapse;
+
+message UpdatePackagesRequest {
+    repeated PackageSpec packages = 1;
+}
+
+message PackageSpec {
+    // e.g. "htop" or "scifi-server"
+    string name = 1;
+
+    // Optional, empty implies "latest"
+    string version = 2;
+}
+
+message UpdateResult {
+    // The package name
+    string name = 1;
+
+    // Whether the update was successful
+    bool success = 2;
+
+    // Optional, if the update failed
+    string message = 3;
+}
+
+message UpdatePackageChunk {
+    // The first chunk is the metadata for the package, with subsequent chunks being the file to install
+    oneof data {
+        PackageMetadata metadata = 1;
+        bytes file_chunk = 2;
+    }
+}
+
+message PackageMetadata {
+    // The package name
+    string name = 1;
+
+    // The package version
+    string version = 2;
+
+    // The package size in bytes
+    uint64 size = 3;
+
+    // md5sum of the package
+    string md5sum = 4;
+}
+
+service SynapseUpdate {
+    rpc UpdatePackages(UpdatePackagesRequest) returns (UpdateResult) {}
+    
+    rpc UploadPackage(stream UpdatePackageChunk) returns (UpdateResult) {}
+}
