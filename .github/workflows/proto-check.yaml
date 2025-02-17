@@ -30,4 +30,4 @@ jobs:
       run: |
         PROTO_FILES=$(find api -name '*.proto')
         echo "Compiling $PROTO_FILES" 
-        protoc --proto_path=. $PROTO_FILES --cpp_out=/tmp/proto_compiled
+        protoc --proto_path=. $PROTO_FILES --cpp_out=/tmp/proto_compiled --fatal_warnings

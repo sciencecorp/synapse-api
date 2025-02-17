@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-import "api/channel.proto";
 import "api/nodes/signal_config.proto";
 
 package synapse;
