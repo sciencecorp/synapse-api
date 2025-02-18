@@ -43,8 +43,8 @@ message PackageMetadata {
     // The package size in bytes
     uint64 size = 3;
 
-    // md5sum of the package
-    string md5sum = 4;
+    // sha256 of the package
+    string sha256_sum = 4;
 }
 
 service SynapseUpdate {
