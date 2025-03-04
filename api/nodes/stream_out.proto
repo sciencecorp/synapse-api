@@ -2,9 +2,23 @@ syntax = "proto3";
 
 package synapse;
 
+// Transport specific configurations
+message UDPMulticastConfig {
+  string group = 1;
+  uint32 port = 2;
+}
+
+message UDPUnicastConfig {
+  string destination_address = 1;
+  uint32 destination_port = 2;
+}
+
 message StreamOutConfig {
   string label = 1;
-  string multicast_group = 2;
+  oneof transport {
+    UDPMulticastConfig udp_multicast = 2;
+    UDPUnicastConfig udp_unicast = 3;
+  }
 }
 
 message StreamOutStatus {
