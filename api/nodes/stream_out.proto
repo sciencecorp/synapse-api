@@ -2,25 +2,38 @@ syntax = "proto3";
 
 package synapse;
 
-// Transport specific configurations
-message UDPMulticastConfig {
-  string group = 1;
-  uint32 port = 2;
-}
-
+/**
+ * UDPUnicastConfig defines the configuration parameters for UDP unicast transport.
+ */
 message UDPUnicastConfig {
+  // IPv4 or IPv6 address of the destination endpoint
   string destination_address = 1;
+
+  // Destination port number, 0 to 65535
   uint32 destination_port = 2;
 }
 
+/**
+ * StreamOutConfig defines the configuration for an outbound data stream.
+ * Clients can request to create a new outbound stream by providing a transport
+ */
 message StreamOutConfig {
+  // Human-readable identifier for the stream
   string label = 1;
+
+  // Transport-specific configuration
+  // Only one transport type can be specified at a time
   oneof transport {
-    UDPMulticastConfig udp_multicast = 2;
-    UDPUnicastConfig udp_unicast = 3;
+    // Configure for UDP unicast support. Only one destination is supported
+    UDPUnicastConfig udp_unicast = 2;
   }
 }
 
+/**
+ * StreamOutStatus provides status information for an outbound stream.
+ * It contains data about the instantaneous performance of the stream
+ */
 message StreamOutStatus {
+  // Current throughput of the stream in megabits per second
   float throughput_mbps = 1;
 }
