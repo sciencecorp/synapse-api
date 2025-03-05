@@ -36,4 +36,7 @@ message StreamOutConfig {
 message StreamOutStatus {
   // Current throughput of the stream in megabits per second
   float throughput_mbps = 1;
+
+  // How many failed packet sends have happened since the start of the stream
+  uint64 failed_send_count = 2;
 }
