@@ -1,4 +1,4 @@
-# Synapse API 1.1
+# Synapse API 2.0.0
 
 The Synapse Protocol defines a standard interface for interacting with a wide range of possible neural interface devices.
 
