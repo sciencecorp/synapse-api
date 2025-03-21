@@ -9,4 +9,5 @@ enum DataType {
     kSpiketrain = 3;
     kTimestamps = 4;
     kImage = 5;
+    kWaveforms = 6;
 }
