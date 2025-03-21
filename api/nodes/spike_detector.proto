@@ -15,4 +15,5 @@ message SpikeDetectorConfig {
     Thresholder thresholder = 1;
     TemplateMatcher template_matcher = 2;
   }
+  uint32 samples_per_spike = 3;
 }
