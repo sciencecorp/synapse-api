@@ -12,6 +12,7 @@ import "api/nodes/stream_out.proto";
 import "api/nodes/stream_in.proto";
 import "api/nodes/disk_writer.proto";
 import "api/nodes/spike_source.proto";
+import "api/nodes/spike_bin.proto";
 
 enum NodeType {
   kNodeTypeUnknown = 0;
@@ -24,6 +25,7 @@ enum NodeType {
   kSpikeSource = 7;
   kSpectralFilter = 8;
   kDiskWriter = 9;
+  kSpikeBin = 10;
 }
 
 message NodeConfig {
@@ -39,6 +41,7 @@ message NodeConfig {
     SpectralFilterConfig spectral_filter = 10;
     DiskWriterConfig disk_writer = 11;
     SpikeSourceConfig spike_source = 12;
+    SpikeBinConfig spike_bin = 13;
   }
 }
 
