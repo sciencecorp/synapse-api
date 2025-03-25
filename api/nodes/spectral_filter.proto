@@ -13,6 +13,6 @@ enum SpectralFilterMethod {
 message SpectralFilterConfig {
   SpectralFilterMethod method = 1;
   reserved 2, 3;
-  float low_pass_hz = 4;
-  float high_pass_hz = 5;
+  float low_pass_corner_hz = 4;
+  float high_pass_corner_hz = 5;
 }
