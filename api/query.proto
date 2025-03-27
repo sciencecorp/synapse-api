@@ -22,6 +22,7 @@ message ImpedanceMeasurement {
   uint32 electrode_id = 1;
   float magnitude = 2;
   float phase = 3;
+  float stim_frequency_hz = 4;
 }
 
 message ImpedanceResponse {
@@ -55,11 +56,28 @@ message QueryRequest {
   }
 }
 
+message StreamQueryRequest {
+  QueryRequest request = 1;
+
+  // Other options to fill in specific to a stream
+}
+
 message QueryResponse {
   Status status = 1;
   repeated uint32 data = 2;
   oneof response {
     ImpedanceResponse impedance_response = 3;
     SelfTestResponse self_test_response = 4;
+  }
+}
+
+message StreamQueryResponse {
+  StatusCode code = 1;
+  uint64 timestamp_ns = 2;
+
+  // We need to switch on the test being run
+  oneof response {
+    ImpedanceResponse impedance = 3;
+    SelfTestResponse self_test = 4;
   }
 }

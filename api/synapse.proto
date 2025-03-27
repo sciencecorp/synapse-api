@@ -45,6 +45,7 @@ service SynapseDevice {
   rpc Start(google.protobuf.Empty) returns (Status) {}
   rpc Stop(google.protobuf.Empty) returns (Status) {}
   rpc Query(QueryRequest) returns (QueryResponse) {}
+  rpc StreamQuery(StreamQueryRequest) returns (stream StreamQueryResponse) {}
 
   rpc ListFiles(google.protobuf.Empty) returns (ListFilesResponse) {}
   rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
