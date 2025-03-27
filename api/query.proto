@@ -73,11 +73,12 @@ message QueryResponse {
 
 message StreamQueryResponse {
   StatusCode code = 1;
-  uint64 timestamp_ns = 2;
-
+  string message = 2;
+  uint64 timestamp_ns = 3;
+  
   // We need to switch on the test being run
   oneof response {
-    ImpedanceResponse impedance = 3;
-    SelfTestResponse self_test = 4;
+    ImpedanceResponse impedance = 4;
+    SelfTestResponse self_test = 5;
   }
 }
