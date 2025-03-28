@@ -22,7 +22,6 @@ message ImpedanceMeasurement {
   uint32 electrode_id = 1;
   float magnitude = 2;
   float phase = 3;
-  float stim_frequency_hz = 4;
 }
 
 message ImpedanceResponse {
