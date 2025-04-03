@@ -15,5 +15,6 @@ message SpikeDetectorConfig {
     Thresholder thresholder = 1;
     TemplateMatcher template_matcher = 2;
   }
-  uint32 samples_per_spike = 3;
+  uint32 samples_per_spike = 3; // The number of samples to send as the spike waveform when a spike is detected. Disables waveform capture if set to 0.
+  uint32 bin_size_ms = 4; // The bin size in milliseconds for the binned spike output. Disables spike binning if set to 0.
 }

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package synapse;
-
-message SpikeBinnerConfig {
-  uint32 bin_size_ms = 1;
-}
