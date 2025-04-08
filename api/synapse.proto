@@ -39,6 +39,29 @@ message DeviceConfiguration {
   repeated NodeConnection connections = 2;
 }
 
+message CreateTapRequest {
+  // Which node to tap the output from
+  uint32 node_id = 1;
+
+  // Client address to the send data to
+  string client_address = 2;
+
+  // Client port to send data to
+  uint32 client_port = 3;
+
+  // What type of data should we get
+  enum TapType {
+    kUnknown = 0;
+    kNodeStats = 1;
+    kNodeOutput = 2;
+  }
+  TapType tap_type = 4;
+}
+
+message CreateTapResponse {
+  StatusCode code = 1;
+}
+
 service SynapseDevice {
   rpc Info(google.protobuf.Empty) returns (DeviceInfo) {}
   rpc Configure(DeviceConfiguration) returns (Status) {}
@@ -53,4 +76,6 @@ service SynapseDevice {
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
   rpc GetLogs(LogQueryRequest) returns (LogQueryResponse) {}
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
+
+  rpc CreateTap(CreateTapRequest) returns (CreateTapResponse) {}
 }
