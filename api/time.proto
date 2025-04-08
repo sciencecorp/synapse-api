@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package synapse;
+
+message TimeSyncPacket {
+    fixed32 client_id = 1;
+    fixed32 sequence = 2;
+
+    fixed64 client_send_time_ns = 3;
+    fixed64 server_receive_time_ns = 4;
+    fixed64 server_send_time_ns = 5;
+    fixed64 client_receive_time_ns = 6;
+}
