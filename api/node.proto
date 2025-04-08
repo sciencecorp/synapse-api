@@ -42,6 +42,22 @@ message NodeConfig {
   }
 }
 
+/*
+* Latency measurements on a per node basis
+*/ 
+message NodeLatencyStatistics {
+  // How many samples of measurements we have taken
+  uint64 sample_count = 1;
+
+  uint64 min_latency_ns = 2;
+  uint64 max_latency_ns = 3;
+
+  // Percentiles of latency
+  uint64 p50_ns = 4;
+  uint64 p95_ns = 5;
+  uint64 p99_ns = 6;
+}
+
 message NodeStatus {
   NodeType type = 1;
   uint32 id = 2;
@@ -51,6 +67,8 @@ message NodeStatus {
     StreamInStatus stream_in = 5;
     ElectricalStimulationStatus electrical_stimulation = 6;
   }
+
+  NodeLatencyStatistics latency = 7;
 }
 
 message NodeConnection {
