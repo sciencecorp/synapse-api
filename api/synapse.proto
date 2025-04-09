@@ -39,6 +39,10 @@ message DeviceConfiguration {
   repeated NodeConnection connections = 2;
 }
 
+message TapDownsampleOptions {
+  
+}
+
 message CreateTapRequest {
   // Which node to tap the output from
   uint32 node_id = 1;
@@ -49,18 +53,24 @@ message CreateTapRequest {
   // Client port to send data to
   uint32 client_port = 3;
 
-  // What type of data should we get
-  enum TapType {
-    kUnknown = 0;
-    kNodeStats = 1;
-    kNodeOutput = 2;
-  }
-  TapType tap_type = 4;
+  // Downsample options specific to this tap
+  TapDownsampleOptions downsample_options = 4;
 }
 
 message CreateTapResponse {
   StatusCode code = 1;
 }
+
+message RemoveTapRequest {
+  uint32 node_id = 1;
+  string client_address = 2;
+  uint32 client_port = 3;
+}
+
+message RemoveTapResponse {
+  StatusCode code = 1;
+}
+
 
 service SynapseDevice {
   rpc Info(google.protobuf.Empty) returns (DeviceInfo) {}
@@ -78,4 +88,5 @@ service SynapseDevice {
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
 
   rpc CreateTap(CreateTapRequest) returns (CreateTapResponse) {}
+  rpc RemoveTap(RemoveTapRequest) returns (RemoveTapResponse) {}
 }
