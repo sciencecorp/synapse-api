@@ -2,6 +2,31 @@ syntax = "proto3";
 
 package synapse;
 
+/**
+ * Used for precise time synchronization over UDP between clients and a server
+ * In most cases, the server is the Synapse device.enum
+ * 
+ * How it works:
+ *  1. Client generates a random client_id on first connection
+ *  2. Client increments the sequence number on each packet (to detect drops)
+ *  3. Client records the send time and sends the packet to the server over udp.
+ *    - The server port will be available through the Status message
+ *    - Try to timestamp the packet as close as possible to the send to minimize
+ *      the calculated offset error. Future improvements could support hardware timestamps
+ *  4. Server records the receive time
+ *  5. Server immediately echos it back to the client, recording the send time
+ *  6. Client records the receive time when the packet returns
+ * 
+ * With these times, the client can calculate
+ *  - Round Trip Time: (client_receive_time_ns - client_send_time_ns)
+ *  - Network Latency (assumes symmetric paths): rtt / 2
+ *  - Clock offset: https://en.wikipedia.org/wiki/Network_Time_Protocol#Clock_synchronization_algorithm
+ * 
+ * Implementation notes:
+ *  - All timestamps are monotonic nanoseconds since Unix epoch
+ *  - The server acts as a passive reflector
+ *  - Multiple sync packets (8 or so) should be sent with a short period (200 ms) between
+*/
 message TimeSyncPacket {
     fixed32 client_id = 1;
     fixed32 sequence = 2;

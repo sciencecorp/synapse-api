@@ -45,4 +45,8 @@ message Status {
   DevicePower power = 5;
   DeviceStorage storage = 6;
   SignalChainStatus signal_chain = 7;
+
+  // If the device supports a time sync server (see time.proto)
+  // Then the UDP echo server will be available at this port
+  uint32 time_sync_port = 8; // Port number (0-65535) for the UDP time sync server
 }
