@@ -10,11 +10,21 @@ message SampleQuery {
   uint32 sample_count = 2;
 }
 
+// Measure the impedance of the requested electrodes.
 message ImpedanceQuery {
   repeated uint32 electrode_ids = 1;
 }
 
 message SelfTestQuery {
+  uint32 peripheral_id = 1; // The ID of the peripheral to test. May be 0 if the test is not specific to a peripheral.
+  repeated int32 test_id = 2; // The ID of the test to run. If empty, all tests will be run.
+}
+
+/**
+  * ListSelfTestQuery is used to list the self-tests available on the device.
+  * If peripheral_id is 0, all availible self-tests will be listed.
+  */
+message ListSelfTestQuery {
   uint32 peripheral_id = 1;
 }
 
@@ -28,16 +38,40 @@ message ImpedanceResponse {
   repeated ImpedanceMeasurement measurements = 1;
 }
 
-message SelfTestItem {
-  string test_name = 1;
-  bool passed = 2;
-  repeated uint32 test_data = 3;
-  string test_report = 4;
+/**
+  * SelfTestResult represents the result of a self-test.
+  */
+message SelfTestResult {
+  string test_name = 1; // The name of the test
+  bool passed = 2; // Whether the test passed or failed
+  repeated uint32 test_data = 3; // Additional data related to the test result
+  string test_report = 4; // A report of the test result.
+  int32 test_id = 5; // The ID of the test. Matches the test_id in SelfTestItem.
 }
 
+/**
+  * SelfTestItem represents a self-test that can be run on the device. It contains information to describe and identify the test.
+  */
+message SelfTestItem {
+  uint32 peripheral_id = 1; // The ID of the peripheral being tested. May be 0 if the test is not specific to a peripheral (e.g. SciFi system-level tests).
+  int32 test_id = 2; // The ID of the test. Used to identify the test when requesting specific tests to be run.
+  string test_name = 3; // The name of the test
+  string test_description = 4; // A description of the test. Should include how long the test is expected to run as well as any setup required by the user.
+}
+
+/** 
+  * SelfTestResponse is the response to a self-test request. It contains the results of all the tests that were run.
+  */
 message SelfTestResponse {
-  bool all_passed = 1;
-  repeated SelfTestItem tests = 2;
+  bool all_passed = 1; // Whether or not all tests passed.
+  repeated SelfTestResult tests = 2; // The results of the tests that were run.
+}
+
+/**
+  * ListSelfTestResponse is the response to a ListSelfTestQuery. It contains a list of the availible self-tests.
+  */
+message ListSelfTestResponse {
+  repeated SelfTestItem tests = 1; // List of self-test items available on the device.
 }
 
 message QueryRequest {
@@ -78,6 +112,7 @@ message StreamQueryResponse {
   // We need to switch on the test being run
   oneof response {
     ImpedanceResponse impedance = 4;
-    SelfTestResponse self_test = 5;
+    SelfTestResponse self_test_response = 5; // A single collated response for all the self-tests that have been run.
+    SelfTestResult self_test = 6; // A single test result. Included so longer-running test suites can stream results as they complete. 
   }
 }
