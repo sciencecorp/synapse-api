@@ -75,17 +75,11 @@ message ListSelfTestResponse {
 }
 
 message QueryRequest {
-  enum QueryType {
-    kNone = 0;
-    kImpedance = 1;
-    kSample = 2;
-    kSelfTest = 3;
-  }
-  QueryType query_type = 1;
   oneof query {
     ImpedanceQuery impedance_query = 2;
     SampleQuery sample_query = 3;
     SelfTestQuery self_test_query = 4;
+    ListSelfTestQuery list_self_test_query = 5;
   }
 }
 
@@ -101,6 +95,7 @@ message QueryResponse {
   oneof response {
     ImpedanceResponse impedance_response = 3;
     SelfTestResponse self_test_response = 4;
+    ListSelfTestResponse list_self_test_response = 5; 
   }
 }
 
@@ -113,6 +108,7 @@ message StreamQueryResponse {
   oneof response {
     ImpedanceResponse impedance = 4;
     SelfTestResponse self_test_response = 5; // A single collated response for all the self-tests that have been run.
-    SelfTestResult self_test = 6; // A single test result. Included so longer-running test suites can stream results as they complete. 
+    SelfTestResult self_test = 6; // A single test result. Included so longer-running test suites can stream results as they complete.
+    ListSelfTestResponse list_self_test_response = 7; 
   }
 }
