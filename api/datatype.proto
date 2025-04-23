@@ -11,3 +11,31 @@ enum DataType {
     kImage = 5;
     kWaveforms = 6;
 }
+
+// A simple tensor with timestamped data
+message Tensor {
+    // Timestamp in ns since the unix epoch
+    uint64 timestamp_ns = 1;
+
+    // Shape of the tensor
+    // The number of values should equal to the product of the dimensions
+    // e.g. shape = [2, 3] => 2 rows, 3 columns
+    repeated int32 shape = 2;
+
+    // Data, stored in a flat array, see shape to reconstruct
+    // e.g. shape: [1, 3] would be:
+    // [10.0, 20.0, 30.0]
+    repeated float values = 3;
+
+    // Expected data type to parse out
+    enum DType {
+        kFloat32 = 0;
+        kInt32 = 1;
+        kUint8 = 2;
+        // e.g. float 64
+        kDouble = 3;
+        kInt64 = 4;
+        kBool = 5;
+    }
+    DType dtype = 4;
+}
