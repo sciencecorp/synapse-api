@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package synapse;
+
+import "api/status.proto";
+
+enum TapTransportType {
+    TAP_TRANSPORT_UNKNOWN = 0;
+
+    // A simple udp stream out, no reliability 
+    TAP_TRANSPORT_UDP = 1;
+
+    // ZMQ publisher out
+    TAP_TRANSPORT_ZMQ = 2;
+}
+
+message TapTransportUDP {
+    // Client address and port to stream data to
+    string address = 1;
+    uint32 port = 2;
+}
+
+message TapTransportZMQ {
+    // The connection to listen to
+    string connection = 1;
+
+    // Optional topic to filter on
+    string topic = 2;
+}
+
+message TapTransportConfig {
+    TapTransportType transport_type = 1;
+    oneof transport_config {
+        TapTransportUDP udp = 2;
+        TapTransportZMQ zmq = 3;
+    }
+}
+
+message TapDownsampleOptions {
+  
+}
+
+message CreateTapRequest {
+  // Which node to tap the output from
+  uint32 node_id = 1;
+  TapTransportConfig tap_config = 2;
+
+  // Downsample options specific to this tap
+  TapDownsampleOptions downsample_options = 3;
+}
+
+message CreateTapResponse {
+  StatusCode code = 1;
+}
+
+message RemoveTapRequest {
+  uint32 node_id = 1;
+
+  // The configuration to remove
+  TapTransportConfig tap_config = 2;
+}
+
+message RemoveTapResponse {
+  StatusCode code = 1;
+}

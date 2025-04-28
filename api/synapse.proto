@@ -8,6 +8,7 @@ import "api/query.proto";
 import "api/status.proto";
 import "api/files.proto";
 import "api/logging.proto";
+import "api/tap.proto";
 
 message Peripheral {
   enum Type {
@@ -38,39 +39,6 @@ message DeviceConfiguration {
   repeated NodeConfig nodes = 1;
   repeated NodeConnection connections = 2;
 }
-
-message TapDownsampleOptions {
-  
-}
-
-message CreateTapRequest {
-  // Which node to tap the output from
-  uint32 node_id = 1;
-
-  // Client address to the send data to
-  string client_address = 2;
-
-  // Client port to send data to
-  uint32 client_port = 3;
-
-  // Downsample options specific to this tap
-  TapDownsampleOptions downsample_options = 4;
-}
-
-message CreateTapResponse {
-  StatusCode code = 1;
-}
-
-message RemoveTapRequest {
-  uint32 node_id = 1;
-  string client_address = 2;
-  uint32 client_port = 3;
-}
-
-message RemoveTapResponse {
-  StatusCode code = 1;
-}
-
 
 service SynapseDevice {
   rpc Info(google.protobuf.Empty) returns (DeviceInfo) {}
