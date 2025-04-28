@@ -36,28 +36,27 @@ message TapTransportConfig {
     }
 }
 
-message TapDownsampleOptions {
-  
+message TapIdentifier {
+    // Unique identifier for this created tap, used to request removal of taps
+    string tap_id = 1;
 }
 
 message CreateTapRequest {
   // Which node to tap the output from
   uint32 node_id = 1;
   TapTransportConfig tap_config = 2;
-
-  // Downsample options specific to this tap
-  TapDownsampleOptions downsample_options = 3;
 }
 
 message CreateTapResponse {
   StatusCode code = 1;
+
+  // Unique id for the created tap if successful
+  TapIdentifier id = 2;
 }
 
 message RemoveTapRequest {
-  uint32 node_id = 1;
-
-  // The configuration to remove
-  TapTransportConfig tap_config = 2;
+  // The tap to remove
+  TapIdentifier id = 1;
 }
 
 message RemoveTapResponse {
