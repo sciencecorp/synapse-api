@@ -38,7 +38,7 @@ message TapTransportConfig {
 
 message TapIdentifier {
     // Unique identifier for this created tap, used to request removal of taps
-    string uuid = 1;
+    uint64 connection_id = 1;
 }
 
 message CreateTapRequest {
