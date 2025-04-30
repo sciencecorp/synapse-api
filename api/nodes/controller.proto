@@ -1,7 +1,36 @@
 syntax = "proto3";
 
+import "google/protobuf/any.proto";
+
 package synapse;
 
+message DecoderController {
+  enum ReferenceType {
+    kMedian = 0;
+    kMean = 1;
+  }
+
+  message WienerFilter {
+    repeated double weights_x = 1;
+    repeated double weights_y = 2;
+  }
+
+  uint32 bin_size_ms = 1;
+  uint32 window_size_ms = 2;
+  double abs_threshold_uV = 3;
+  repeated uint32 channel_indices = 4;
+  ReferenceType reference_type = 5;
+  double dc_highpass = 6;
+  double time_offset = 7;
+  uint32 n_history_bins = 8;
+
+  // Should be determined by other nodes
+  uint32 sample_rate_hz = 101;
+  uint32 max_channels = 102;
+
+  WienerFilter wiener_filter = 201;
+}
+
 message ControllerNodeConfig {
-    
+  google.protobuf.Any config = 1;
 }
