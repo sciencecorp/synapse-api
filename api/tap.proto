@@ -7,33 +7,37 @@ import "api/status.proto";
 enum TapTransportType {
     TAP_TRANSPORT_UNKNOWN = 0;
 
-    // A simple udp stream out, no reliability 
+    // A simple udp stream, no reliability 
     TAP_TRANSPORT_UDP = 1;
 
-    // ZMQ publisher out
+    // ZMQ Transport
     TAP_TRANSPORT_ZMQ = 2;
 }
 
-message TapTransportUDP {
+// A message defining where for the Tap to stream data to
+message ReadTapTransportUDP {
     // Client address and port to stream data to
     string address = 1;
     uint32 port = 2;
 }
 
-message TapTransportZMQ {
-    // The connection to listen to
-    string connection = 1;
-
-    // Optional topic to filter on
-    string topic = 2;
+// A message defining where 
+message ReadTapTransportZMQ {
+  // Nothing to send now, just indicate that we want to establish a 
+  // subscription to a ZMQ proxy
 }
 
-message TapTransportConfig {
-    TapTransportType transport_type = 1;
+// For a ReadTap, we need to specify what kind of tap we want
+message ReadTapTransportConfig {
     oneof transport_config {
-        TapTransportUDP udp = 2;
-        TapTransportZMQ zmq = 3;
+      ReadTapTransportUDP udp = 1;
+      ReadTapTransportZMQ zmq = 2;
     }
+}
+
+// Read data from the output of a node
+message ReadTap {
+  ReadTapTransportConfig config = 1;
 }
 
 message TapIdentifier {
@@ -42,9 +46,38 @@ message TapIdentifier {
 }
 
 message CreateTapRequest {
-  // Which node to tap the output from
+  // Which node to tap
   uint32 node_id = 1;
-  TapTransportConfig tap_config = 2;
+
+  oneof tap_type {
+    // Read taps use a tap transport config
+    ReadTap read_tap = 2;
+
+    // Eventually we could have WriteTaps
+  }
+}
+
+// A response from the service that indicates where
+// the data will be streamed to
+message ReadTapUDPConfig {
+  string destination_address = 1;
+  uint32 port = 2;
+}
+
+// A response from the service that indicates where
+// the client should connect to
+message ReadTapZMQConfig {
+  // ZMQ forwarders take the form of
+  // tcp://<ip address>:port
+  uint32 bind_port = 1;
+}
+
+
+message ReadTapResponse {
+  oneof transport_config {
+    ReadTapUDPConfig udp = 1;
+    ReadTapZMQConfig zmq = 2;
+  }
 }
 
 message CreateTapResponse {
@@ -52,6 +85,10 @@ message CreateTapResponse {
 
   // Unique id for the created tap if successful
   TapIdentifier id = 2;
+
+  oneof tap_response {
+    ReadTapResponse read_response = 3;
+  }
 }
 
 message RemoveTapRequest {
