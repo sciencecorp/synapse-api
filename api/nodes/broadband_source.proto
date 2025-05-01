@@ -30,4 +30,7 @@ message BroadbandFrame {
 
   // The actual frame data, indexed by channel id
   repeated sint32 frame_data = 3;
+
+  // Used for reconstructing multiple frames
+  uint32 sample_rate_hz = 4;
 }
