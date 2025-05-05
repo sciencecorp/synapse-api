@@ -40,8 +40,8 @@ message Tensor {
     DType dtype = 3;
 
     enum Endianness {
-        LITTLE_ENDIAN = 0;
-        BIG_ENDIAN = 1;
+        TENSOR_LITTLE_ENDIAN = 0;
+        TENSOR_BIG_ENDIAN = 1;
     }
     // We default to little because that covers most of the use cases
     Endianness endianness = 4;
