@@ -19,18 +19,3 @@ message BroadbandSourceStatus {
     SignalStatus status = 1;
 }
 
-// A sample of all of the channels at a specific timepoint
-message BroadbandFrame {
-  // Monotonic timestamp when this frame was recorded
-  uint64 timestamp_ns = 1;
-
-  // Monotonically increasing sequence number
-  // useful to detect missed or dropped frames
-  uint64 sequence_number = 2;
-
-  // The actual frame data, indexed by channel id
-  repeated sint32 frame_data = 3;
-
-  // Used for reconstructing multiple frames
-  uint32 sample_rate_hz = 4;
-}
