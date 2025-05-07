@@ -67,3 +67,12 @@ message BroadbandFrame {
   // Used for reconstructing multiple frames
   uint32 sample_rate_hz = 4;
 }
+
+message Timeseries {
+  uint32 id = 1;
+  message Datapoint {
+    uint64 timestamp_ns = 1;
+    sint32 sample = 2;
+  }
+  repeated Datapoint datapoints = 2;
+}
