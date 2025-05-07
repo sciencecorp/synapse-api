@@ -13,7 +13,7 @@ import "api/nodes/stream_in.proto";
 import "api/nodes/disk_writer.proto";
 import "api/nodes/spike_source.proto";
 import "api/nodes/spike_binner.proto";
-import "api/nodes/controller.proto";
+import "api/nodes/application.proto";
 
 enum NodeType {
   kNodeTypeUnknown = 0;
@@ -27,7 +27,7 @@ enum NodeType {
   kSpectralFilter = 8;
   kDiskWriter = 9;
   kSpikeBinner = 10;
-  kController = 11;
+  kApplication = 11;
 }
 
 message NodeConfig {
@@ -44,7 +44,7 @@ message NodeConfig {
     DiskWriterConfig disk_writer = 11;
     SpikeSourceConfig spike_source = 12;
     SpikeBinnerConfig spike_binner = 13;
-    ControllerNodeConfig controller = 14;
+    ApplicationNodeConfig application = 14;
   }
 }
 
@@ -56,6 +56,7 @@ message NodeStatus {
     BroadbandSourceStatus broadband_source = 4;
     StreamInStatus stream_in = 5;
     ElectricalStimulationStatus electrical_stimulation = 6;
+    ApplicationNodeStatus application = 7;
   }
 }
 
