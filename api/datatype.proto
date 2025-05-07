@@ -69,10 +69,14 @@ message BroadbandFrame {
 }
 
 message Timeseries {
+
+  // An identifier for the channel of data from which the timeseries was recorded. 
   uint32 id = 1;
+
+  // Represents a single sample of data at a specific timepoint
   message Datapoint {
-    uint64 timestamp_ns = 1;
-    sint32 sample = 2;
+    uint64 timestamp_ns = 1; // Timestamp of the recorded sample in ns since the unix epoch.
+    sint32 sample = 2; // The actual sample value.
   }
-  repeated Datapoint datapoints = 2;
+  repeated Datapoint datapoints = 2; // Collection of datapoints for this timeseries.
 }
