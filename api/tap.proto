@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package synapse;
+
+message TapConnection {
+    // Unique name id for this tap
+    string name = 1;
+
+    // What is the zmq endpoint to connect to
+    string endpoint = 2;
+
+    // What is the protobuf message to expect over this 
+    string message_type = 3;
+}
+
+message ListTapsQuery {
+
+}
+
+message ListTapsResponse {
+    repeated TapConnection taps = 1;
+}
