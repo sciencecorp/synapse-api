@@ -5,7 +5,7 @@ package synapse;
 import "api/synapse.proto";
 
 message AppManifest {
-  // Your application name, it should match what is deployed
+  // Your application name
   string name = 1;
 
   // The device configuration for this app
