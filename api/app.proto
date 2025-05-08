@@ -4,7 +4,7 @@ package synapse;
 
 import "api/synapse.proto";
 
-message ApplicationManifest {
+message AppManifest {
   // Your application name, it should match what is deployed
   string name = 1;
 
