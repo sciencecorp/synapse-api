@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package synapse;
+
+import "api/synapse.proto";
+
+message ApplicationManifest {
+  // Your application name, it should match what is deployed
+  string name = 1;
+
+  // The device configuration for this app
+  DeviceConfiguration device_configuration = 2;
+}
