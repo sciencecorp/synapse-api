@@ -13,7 +13,7 @@ message TapConnection {
     string message_type = 3;
 }
 
-message ListTapsRequest {
+message ListTapsQuery {
 
 }
 

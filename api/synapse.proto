@@ -8,7 +8,6 @@ import "api/query.proto";
 import "api/status.proto";
 import "api/files.proto";
 import "api/logging.proto";
-import "api/tap.proto";
 
 message Peripheral {
   enum Type {
@@ -54,7 +53,4 @@ service SynapseDevice {
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
   rpc GetLogs(LogQueryRequest) returns (LogQueryResponse) {}
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
-
-  // List all available taps to connect to and listen to data
-  rpc ListTaps(ListTapsRequest) returns (ListTapsResponse) {}
 }
