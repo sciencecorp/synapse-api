@@ -6,8 +6,9 @@ package synapse;
 
 message ElectrodeConfig {
     repeated Channel channels = 1;
-    float low_cutoff_hz = 2;
-    float high_cutoff_hz = 3;
+    reserved 2, 3;
+    float low_pass_corner_hz = 4;
+    float high_pass_corner_hz = 5;
 }
 
 message PixelConfig {
