@@ -48,7 +48,7 @@ service SynapseDevice {
   rpc Query(QueryRequest) returns (QueryResponse) {}
   rpc StreamQuery(StreamQueryRequest) returns (stream StreamQueryResponse) {}
 
-  rpc DeployApp(AppDeployRequest) returns (AppDeployResponse) {}
+  rpc DeployApp(stream AppPackageChunk) returns (AppDeployResponse) {}
 
   rpc ListFiles(google.protobuf.Empty) returns (ListFilesResponse) {}
   rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
