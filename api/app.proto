@@ -32,4 +32,9 @@ message AppPackageChunk {
   }
 }
 
-message AppDeployResponse { Status status = 1; }
+message AppDeployResponse { 
+  StatusCode status = 1;
+
+  // Informational messages
+  string message = 2;
+}
