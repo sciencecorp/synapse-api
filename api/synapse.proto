@@ -9,6 +9,7 @@ import "api/status.proto";
 import "api/files.proto";
 import "api/logging.proto";
 import "api/app.proto";
+
 message Peripheral {
   enum Type {
     kUnknown = 0;
