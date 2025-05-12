@@ -8,7 +8,7 @@ import "api/query.proto";
 import "api/status.proto";
 import "api/files.proto";
 import "api/logging.proto";
-
+import "api/app.proto";
 message Peripheral {
   enum Type {
     kUnknown = 0;
@@ -47,10 +47,13 @@ service SynapseDevice {
   rpc Query(QueryRequest) returns (QueryResponse) {}
   rpc StreamQuery(StreamQueryRequest) returns (stream StreamQueryResponse) {}
 
+  rpc DeployApp(AppDeployRequest) returns (AppDeployResponse) {}
+
   rpc ListFiles(google.protobuf.Empty) returns (ListFilesResponse) {}
   rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
   rpc ReadFile(ReadFileRequest) returns (stream ReadFileResponse) {}
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
+
   rpc GetLogs(LogQueryRequest) returns (LogQueryResponse) {}
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
 }

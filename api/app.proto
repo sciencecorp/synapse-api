@@ -2,7 +2,13 @@ syntax = "proto3";
 
 package synapse;
 
+import "api/status.proto";
+
 message AppManifest {
   // Your application name
   string name = 1;
 }
+
+message AppDeployRequest { bytes body = 1; }
+
+message AppDeployResponse { Status status = 1; }
