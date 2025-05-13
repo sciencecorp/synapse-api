@@ -2,7 +2,39 @@ syntax = "proto3";
 
 package synapse;
 
+import "api/status.proto";
+
 message AppManifest {
   // Your application name
   string name = 1;
+}
+
+message PackageMetadata {
+  // the package name
+  // e.g. synapse-example-app_0.1.0_arm64.deb
+  string name = 1;
+
+  // The version of the package to be uploaded
+  string version = 2;
+
+  // Package size, in bytes
+  uint64 size = 3;
+
+  // sha256 of the package, for verification
+  string sha256_sum = 4;
+}
+
+message AppPackageChunk {
+  // The first chunk is the metadata, with subsequent chunks being the file to install
+  oneof data {
+    PackageMetadata metadata = 1;
+    bytes file_chunk = 2;
+  }
+}
+
+message AppDeployResponse { 
+  StatusCode status = 1;
+
+  // Informational messages
+  string message = 2;
 }
