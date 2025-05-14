@@ -21,8 +21,9 @@ message FunctionProfile {
     // Median execution time over all samples
     uint64 median_duration_ns = 6;
 
-    // p99 latency
+    // p99 duration
     uint64 p99_duration_ns = 7;
+
+    // The last measurement duration
+    uint64 last_duration_ns = 8;
 }
-
-
