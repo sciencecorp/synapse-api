@@ -25,5 +25,5 @@ message FunctionProfile {
     uint64 p99_duration_ns = 7;
 
     // The last measurement duration
-    uint64 last_duration_ns = 8;
+    uint64 latest_duration_ns = 8;
 }
