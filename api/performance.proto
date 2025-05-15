@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package synapse;
+
+// Statistics about the performance of a function call or block of computation
+message FunctionProfile {
+    string name = 1;
+
+    // How often has this been called
+    uint64 call_count = 2;
+
+    // What was the minimal time it took for this function to execute
+    uint64 min_duration_ns = 3;
+
+    // Maximum execution for this function
+    uint64 max_duration_ns = 4;
+
+    // Average (mean) of this function over all samples
+    uint64 average_duration_ns = 5;
+
+    // Median execution time over all samples
+    uint64 median_duration_ns = 6;
+
+    // p99 duration
+    uint64 p99_duration_ns = 7;
+
+    // The last measurement duration
+    uint64 latest_duration_ns = 8;
+}

@@ -3,6 +3,7 @@ syntax = "proto3";
 package synapse;
 
 import "api/status.proto";
+import "api/performance.proto";
 
 message AppManifest {
   // Your application name
@@ -37,4 +38,9 @@ message AppDeployResponse {
 
   // Informational messages
   string message = 2;
+}
+
+message AppPerformanceSummary {
+  uint64 timestamp_ns = 1;
+  repeated FunctionProfile function_profiles = 2;
 }
