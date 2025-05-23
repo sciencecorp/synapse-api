@@ -2,6 +2,16 @@ syntax = "proto3";
 
 package synapse;
 
+enum TapType {
+    TAP_TYPE_UNSPECIFIED = 0;
+
+    // The tap will be producing data
+    TAP_TYPE_PRODUCER = 1;
+
+    // The tap type will be consuming data
+    TAP_TYPE_CONSUMER = 2; 
+}
+
 message TapConnection {
     // Unique name id for this tap
     string name = 1;
@@ -11,6 +21,9 @@ message TapConnection {
 
     // What is the protobuf message to expect over this 
     string message_type = 3;
+
+    // Is this tap meant to be producing or consuming
+    TapType tap_type = 4;
 }
 
 message ListTapsQuery {
