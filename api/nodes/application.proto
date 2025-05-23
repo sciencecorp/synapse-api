@@ -18,4 +18,7 @@ message ApplicationNodeStatus {
 
     // Is the application started and running?
     bool running = 2;
+
+    // If the application failed to start, what were the logs
+    string error_logs = 3;
 }
