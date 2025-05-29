@@ -18,7 +18,7 @@ message Peripheral {
     uint32 peripheral_id = 3;
     Type type = 4;
     string address = 5;
-  }
+}
   
 
 message DeviceInfo {
@@ -29,10 +29,9 @@ message DeviceInfo {
     Status status = 5;
     repeated Peripheral peripherals = 6;
     DeviceConfiguration configuration = 7;
-  }
-  
-  message DeviceConfiguration {
+}
+
+message DeviceConfiguration {
     repeated NodeConfig nodes = 1;
     repeated NodeConnection connections = 2;
-  }
-  
+}
