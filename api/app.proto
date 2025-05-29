@@ -5,15 +5,17 @@ package synapse;
 import "api/status.proto";
 import "api/performance.proto";
 
+import "google/protobuf/struct.proto";
+
 message AppManifest {
   // Your application name
   string name = 1;
 
-  // Path to the JSON Schema file for validating application configuration
-  string config_schema_path = 2;
+  // JSON Schema for validating configuration
+  google.protobuf.Struct config_schema = 2;
 
-  // Path to the DeviceConfiguration, in json, relative to the manifest file
-  string device_config_path = 3;
+  // DeviceConfiguration describing the signal chain/device config
+  google.protobuf.Struct device_config = 3;
 }
 
 message PackageMetadata {
