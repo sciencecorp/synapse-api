@@ -4,6 +4,7 @@ package synapse;
 
 import "api/status.proto";
 import "api/performance.proto";
+import "api/device.proto";
 
 import "google/protobuf/struct.proto";
 
@@ -15,7 +16,7 @@ message AppManifest {
   google.protobuf.Struct config_schema = 2;
 
   // DeviceConfiguration describing the signal chain/device config
-  google.protobuf.Struct device_config = 3;
+  DeviceConfiguration device_config = 3;
 }
 
 message PackageMetadata {
