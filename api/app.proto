@@ -9,9 +9,8 @@ message AppManifest {
   // Your application name
   string name = 1;
 
-  // Additional proto files provided by the developer, relative to the manifest file
-  // We need these to generate type descriptors for use with Any types
-  repeated string proto_files = 2;
+  // Path to the JSON Schema file for validating application configuration
+  string config_schema_path = 2;
 
   // Path to the DeviceConfiguration, in json, relative to the manifest file
   string device_config_path = 3;
