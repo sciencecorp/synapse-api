@@ -19,7 +19,6 @@ message Peripheral {
     Type type = 4;
     string address = 5;
 }
-  
 
 message DeviceInfo {
     string name = 1;
