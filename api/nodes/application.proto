@@ -2,15 +2,13 @@ syntax = "proto3";
 
 package synapse;
 
-import "google/protobuf/struct.proto";
-
 message ApplicationNodeConfig {
     // Your application name, it should match what is deployed
     string name = 1;
 
     // Application specific configuration, will be loaded by
     // the custom application during runtime
-    google.protobuf.Struct parameters = 2;
+    map<string, google.protobuf.Value> parameters = 2;
 }
 
 message ApplicationNodeStatus {
