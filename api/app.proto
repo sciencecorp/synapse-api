@@ -4,17 +4,19 @@ package synapse;
 
 import "api/status.proto";
 import "api/performance.proto";
+import "api/device.proto";
+
+import "google/protobuf/struct.proto";
 
 message AppManifest {
   // Your application name
   string name = 1;
 
-  // Additional proto files provided by the developer, relative to the manifest file
-  // We need these to generate type descriptors for use with Any types
-  repeated string proto_files = 2;
+  // JSON Schema for validating configuration
+  google.protobuf.Struct config_schema = 2;
 
-  // Path to the DeviceConfiguration, in json, relative to the manifest file
-  string device_config_path = 3;
+  // DeviceConfiguration describing the signal chain/device config
+  DeviceConfiguration device_config = 3;
 }
 
 message PackageMetadata {
