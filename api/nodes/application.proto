@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package synapse;
 
+import "google/protobuf/struct.proto";
+
 message ApplicationNodeConfig {
     // Your application name, it should match what is deployed
     string name = 1;
