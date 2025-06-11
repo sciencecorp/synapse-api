@@ -66,6 +66,27 @@ message BroadbandFrame {
 
   // Used for reconstructing multiple frames
   uint32 sample_rate_hz = 4;
+
+  // Describes contiguous ranges of channel types in frame_data, in order.
+  // When empty, all frame_data entries are electrode channels (legacy behavior).
+  // Example: 
+  // [{type: ELECTRODE}, count: 64, {type:TTL, count:3, channel_ids:[0, 2, 5]}]
+  // This means frame_data[0..63] are electrodes, frame_data[64..66] are TTL lines 0, 2, 5
+  message ChannelRange {
+    enum ChannelType {
+      ELECTRODE = 0;
+      TTL = 1;
+    }
+    ChannelType type = 1;
+
+    // Number of channels of this type in frame_data
+    uint32 count = 2;
+
+    // Optional: for non-contiguous channels (e.g., TTL), specifies which
+    //           channel ids are included, in order. Empty for contiguous
+    repeated uint32 channel_ids = 3;
+  }
+  repeated ChannelRange channel_ranges = 5;
 }
 
 message Timeseries {
