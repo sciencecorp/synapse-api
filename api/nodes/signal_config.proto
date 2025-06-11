@@ -5,7 +5,6 @@ import "api/channel.proto";
 package synapse;
 
 message ElectrodeConfig {
-    // Electrode and/or TTL recording channels
     repeated Channel channels = 1;
 
     // Analog filter settings for electrode channels
