@@ -11,23 +11,6 @@ message ElectrodeConfig {
     // Analog filter settings for electrode channels
     float low_cutoff_hz = 2;
     float high_cutoff_hz = 3;
-
-    // Additional data channels to record beyond electrodes
-    // These will appear in the broadband data stream after electrode
-    // channels in the order specified here
-    message AuxiliaryChannel {
-        enum ChannelType {
-            TTL = 0;  // Digital input line
-        }
-        ChannelType type = 1;
-
-        // Channel identifier (TTL line 0-31, etc.)
-        uint32 channel_id = 2;
-
-        // Optional human-readable label
-        string label = 3;
-    }
-    repeated AuxiliaryChannel auxiliary_channels = 4;
 }
 
 message PixelConfig {
