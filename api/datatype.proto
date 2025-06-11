@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package synapse;
 
+import "google/protobuf/struct.proto";
+
 enum DataType {
     kDataTypeUnknown = 0;
     kAny = 1;
@@ -69,7 +71,6 @@ message BroadbandFrame {
 }
 
 message Timeseries {
-
   // An identifier for the channel of data from which the timeseries was recorded. 
   uint32 id = 1;
 
@@ -79,4 +80,14 @@ message Timeseries {
     sint32 sample = 2; // The actual sample value.
   }
   repeated Datapoint datapoints = 2; // Collection of datapoints for this timeseries.
+}
+
+// A tensor with associated metadata
+message AnnotatedTensor {
+  // The tensor type
+  Tensor tensor = 1;
+  
+  // Generic metadata associated with the tensor
+  // e.g. pipeline latencies
+  map<string, google.protobuf.Value> metadata = 2;
 }
