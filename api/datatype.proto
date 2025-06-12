@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package synapse;
 
+import "api/channel.proto";
+
 enum DataType {
     kDataTypeUnknown = 0;
     kAny = 1;
