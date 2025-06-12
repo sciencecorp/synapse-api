@@ -3,6 +3,7 @@ syntax = "proto3";
 package synapse;
 
 import "google/protobuf/struct.proto";
+import "api/channel.proto";
 
 enum DataType {
     kDataTypeUnknown = 0;
