@@ -2,8 +2,22 @@ syntax = "proto3";
 
 package synapse;
 
+enum ChannelType {
+  ELECTRODE = 0;
+  TTL = 1;
+}
+
 message Channel {
   uint32 id = 1;
   uint32 electrode_id = 2;
   uint32 reference_id = 3;
+  ChannelType type = 4;
+}
+
+message ChannelRange {
+    ChannelType type = 1;
+    uint32 count = 2;
+    // Optional: for non-contiguous channels (e.g., TTL), specifies which
+    //           channel ids are included, in order. Empty for contiguous
+    repeated uint32 channel_ids = 3;
 }

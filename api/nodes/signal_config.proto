@@ -6,6 +6,8 @@ package synapse;
 
 message ElectrodeConfig {
     repeated Channel channels = 1;
+
+    // Analog filter settings for electrode channels
     float low_cutoff_hz = 2;
     float high_cutoff_hz = 3;
 }
