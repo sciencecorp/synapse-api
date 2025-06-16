@@ -73,8 +73,8 @@ message BroadbandFrame {
   // When empty, all frame_data entries are electrode channels (legacy behavior).
   // Describes contiguous ranges of channel types in frame_data, in order.
   // Example:
-  // [{type: ELECTRODE}, count: 64, {type:TTL, count:3, channel_ids:[0, 2, 5]}]
-  // This means frame_data[0..63] are electrodes, frame_data[64..66] are TTL lines 0, 2, 5
+  // [{type: ELECTRODE}, count: 64, {type:GPIO, count:3, channel_ids:[0, 2, 5]}]
+  // This means frame_data[0..63] are electrodes, frame_data[64..66] are GPIO lines 0, 2, 5
   repeated ChannelRange channel_ranges = 5;
 }
 
