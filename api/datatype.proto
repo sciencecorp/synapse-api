@@ -57,7 +57,10 @@ message Tensor {
 
 // A sample of all of the channels at a specific timepoint
 message BroadbandFrame {
-  // Monotonic timestamp when this frame was recorded
+  // Monotonic timestamp when this frame was recorded based on the sampling rate
+  // At the start of a recording, the unix steady clock is recorded
+  // This timestamp is being calculated by
+  // start_timestamp_ns + (current_seq_num - start_seq_num) * 1e9 / sample_rate
   uint64 timestamp_ns = 1;
 
   // Monotonically increasing sequence number
@@ -76,6 +79,11 @@ message BroadbandFrame {
   // [{type: ELECTRODE}, count: 64, {type:GPIO, count:3, channel_ids:[0, 2, 5]}]
   // This means frame_data[0..63] are electrodes, frame_data[64..66] are GPIO lines 0, 2, 5
   repeated ChannelRange channel_ranges = 5;
+
+  // For legacy reasons, and syncing with other parts of the system, the current
+  // steady clock in unix time as reported by the system
+  // e.g. std::chrono::steady_clock::now().time_since_epoch()
+  uint64 unix_timestamp_ns = 6;
 }
 
 message Timeseries {
