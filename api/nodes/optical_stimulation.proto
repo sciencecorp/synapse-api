@@ -9,3 +9,19 @@ message OpticalStimulationConfig {
   uint32 frame_rate = 4;
   float gain = 5;
 }
+
+// Core frame type for LED array optical stimulation
+message OpticalStimFrame {
+  uint64 frame_id = 1;
+  uint64 sequence_number = 2;
+  uint64 timestamp_ns = 3;
+
+  // Frame dimensions
+  uint32 rows = 4;
+  uint32 columns = 5;
+
+  // Normalized pixel intensities (0.0 - 1.0)
+  // Row major ordering
+  // 0.0 is completely off, 1.0 is completely on
+  repeated float pixels = 6;
+}
