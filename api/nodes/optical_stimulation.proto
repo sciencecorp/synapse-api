@@ -23,5 +23,9 @@ message OpticalStimFrame {
   // Normalized pixel intensities (0.0 - 1.0)
   // Row major ordering
   // 0.0 is completely off, 1.0 is completely on
-  repeated float pixels = 6;
+  repeated float intensity = 6;
+
+  // For passive displays, this represents the row on time
+  // For active, this represents frame on time
+  uint64 duration_ns = 7;
 }
