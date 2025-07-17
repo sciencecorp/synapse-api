@@ -31,5 +31,5 @@ message OpticalStimFrame {
 
   // For passive displays, this represents the row on time
   // For active, this represents frame on time
-  uint64 duration_ns = 7;
+  uint64 duration_us = 7;
 }
