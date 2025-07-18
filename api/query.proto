@@ -57,7 +57,7 @@ message QueryRequest {
     SampleQuery sample_query = 3;
     SelfTestQuery self_test_query = 4;
     ListTapsQuery list_taps_query = 5;
-    ListSettingsQuery list_settings_query = 6;
+    GetSettingsQuery get_settings_query = 6;
   }
 }
 

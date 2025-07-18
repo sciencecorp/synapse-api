@@ -43,8 +43,8 @@ message DeviceSettings {
     string name = 1;
 }
 
-message ListSettingsQuery {
-    
+message GetSettingsQuery {
+
 }
 
 message UpdateDeviceSettingsRequest {
