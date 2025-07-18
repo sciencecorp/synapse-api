@@ -5,6 +5,8 @@ package synapse;
 import "api/node.proto";
 import "api/status.proto";
 
+import "google/protobuf/field_mask.proto";
+
 message Peripheral {
     enum Type {
       kUnknown = 0;
@@ -33,4 +35,21 @@ message DeviceInfo {
 message DeviceConfiguration {
     repeated NodeConfig nodes = 1;
     repeated NodeConnection connections = 2;
+}
+
+
+// Device settings that are configurable by the user
+message DeviceSettings {
+    string name = 1;
+
+}
+
+message UpdateDeviceSettingsRequest {
+    DeviceSettings settings = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateDeviceSettingsResponse {
+    Status status = 1;
+    DeviceSettings updated_settings = 2;
 }
