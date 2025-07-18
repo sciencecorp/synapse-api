@@ -8,4 +8,28 @@ message OpticalStimulationConfig {
   uint32 bit_width = 3;
   uint32 frame_rate = 4;
   float gain = 5;
+
+  // Instruct the FPGA to send out a 1xN vector 
+  // where N is the number of LEDs with each Axon frame
+  bool send_receipts = 6;
+}
+
+// Core frame type for LED array optical stimulation
+message OpticalStimFrame {
+  uint64 frame_id = 1;
+  uint64 sequence_number = 2;
+  uint64 timestamp_ns = 3;
+
+  // Frame dimensions
+  uint32 rows = 4;
+  uint32 columns = 5;
+
+  // Normalized pixel intensities (0.0 - 1.0)
+  // Row major ordering
+  // 0.0 is completely off, 1.0 is completely on
+  repeated float intensity = 6;
+
+  // For passive displays, this represents the row on time
+  // For active, this represents frame on time
+  uint64 duration_us = 7;
 }
