@@ -47,6 +47,10 @@ message GetSettingsQuery {
 
 }
 
+message GetSettingsResponse {
+    DeviceSettings settings = 1;
+}
+
 message UpdateDeviceSettingsRequest {
     DeviceSettings settings = 1;
     google.protobuf.FieldMask update_mask = 2;

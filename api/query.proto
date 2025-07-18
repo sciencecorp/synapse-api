@@ -74,6 +74,7 @@ message QueryResponse {
     ImpedanceResponse impedance_response = 3;
     SelfTestResponse self_test_response = 4;
     ListTapsResponse list_taps_response = 5;
+    GetSettingsResponse get_settings_response = 6;
   }
 }
 
