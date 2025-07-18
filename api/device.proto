@@ -41,7 +41,10 @@ message DeviceConfiguration {
 // Device settings that are configurable by the user
 message DeviceSettings {
     string name = 1;
+}
 
+message ListSettingsQuery {
+    
 }
 
 message UpdateDeviceSettingsRequest {

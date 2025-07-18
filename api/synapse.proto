@@ -29,6 +29,5 @@ service SynapseDevice {
   rpc GetLogs(LogQueryRequest) returns (LogQueryResponse) {}
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
 
-  rpc GetDeviceSettings(google.protobuf.Empty) returns (DeviceSettings) {}
   rpc UpdateDeviceSettings(UpdateDeviceSettingsRequest) returns (UpdateDeviceSettingsResponse) {}
 }
