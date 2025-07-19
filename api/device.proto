@@ -5,8 +5,6 @@ package synapse;
 import "api/node.proto";
 import "api/status.proto";
 
-import "google/protobuf/field_mask.proto";
-
 message Peripheral {
     enum Type {
       kUnknown = 0;
@@ -52,8 +50,8 @@ message GetSettingsResponse {
 }
 
 message UpdateDeviceSettingsRequest {
+    // If ia field isn't populated, it will not be changed
     DeviceSettings settings = 1;
-    google.protobuf.FieldMask update_mask = 2;
 }
 
 message UpdateDeviceSettingsResponse {
