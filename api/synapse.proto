@@ -28,4 +28,6 @@ service SynapseDevice {
 
   rpc GetLogs(LogQueryRequest) returns (LogQueryResponse) {}
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
+
+  rpc UpdateDeviceSettings(UpdateDeviceSettingsRequest) returns (UpdateDeviceSettingsResponse) {}
 }

@@ -5,6 +5,7 @@ package synapse;
 import "api/channel.proto";
 import "api/status.proto";
 import "api/tap.proto";
+import "api/device.proto";
 
 message SampleQuery {
   repeated Channel channels = 1;
@@ -48,6 +49,7 @@ message QueryRequest {
     kSample = 2;
     kSelfTest = 3;
     kListTaps = 4;
+    kGetSettings = 5;
   }
   QueryType query_type = 1;
   oneof query {
@@ -55,6 +57,7 @@ message QueryRequest {
     SampleQuery sample_query = 3;
     SelfTestQuery self_test_query = 4;
     ListTapsQuery list_taps_query = 5;
+    GetSettingsQuery get_settings_query = 6;
   }
 }
 
@@ -71,6 +74,7 @@ message QueryResponse {
     ImpedanceResponse impedance_response = 3;
     SelfTestResponse self_test_response = 4;
     ListTapsResponse list_taps_response = 5;
+    GetSettingsResponse get_settings_response = 6;
   }
 }
 

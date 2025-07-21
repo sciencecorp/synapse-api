@@ -4,6 +4,7 @@ package synapse;
 
 import "api/node.proto";
 import "api/status.proto";
+import "api/time.proto";
 
 message Peripheral {
     enum Type {
@@ -33,4 +34,29 @@ message DeviceInfo {
 message DeviceConfiguration {
     repeated NodeConfig nodes = 1;
     repeated NodeConnection connections = 2;
+}
+
+
+// Device settings that are configurable by the user
+message DeviceSettings {
+    string name = 1;
+    TimeSource time_source = 2;
+}
+
+message GetSettingsQuery {
+
+}
+
+message GetSettingsResponse {
+    DeviceSettings settings = 1;
+}
+
+message UpdateDeviceSettingsRequest {
+    // If a field isn't populated, it will not be changed
+    DeviceSettings settings = 1;
+}
+
+message UpdateDeviceSettingsResponse {
+    Status status = 1;
+    DeviceSettings updated_settings = 2;
 }
