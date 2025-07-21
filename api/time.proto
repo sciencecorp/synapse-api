@@ -36,3 +36,17 @@ message TimeSyncPacket {
     fixed64 server_send_time_ns = 5;
     fixed64 client_receive_time_ns = 6;
 }
+
+// Defines the time synchronization method for device timestamps
+enum TimeSource {
+    TIME_SOURCE_UNKNOWN = 0;
+        
+    // Use std::chrono::steady_clock (monotonic, immune to system time changes)
+    // Note: The epoch is implementation-defined (often system boot time)
+    TIME_SOURCE_STEADY_CLOCK = 1;
+  
+    // Calculate timestamps based on sample counter and sampling rate
+    // timestamp = (sample_counter / sample_rate) + initial_steady_clock_value
+    // Where initial_steady_clock_value = get_steady_clock_now() at start
+    TIME_SOURCE_SAMPLE_COUNTER = 2;
+}
