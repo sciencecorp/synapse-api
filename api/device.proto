@@ -52,7 +52,7 @@ message GetSettingsResponse {
 }
 
 message UpdateDeviceSettingsRequest {
-    // If ia field isn't populated, it will not be changed
+    // If a field isn't populated, it will not be changed
     DeviceSettings settings = 1;
 }
 
