@@ -40,7 +40,6 @@ message DeviceConfiguration {
 // Device settings that are configurable by the user
 message DeviceSettings {
     string name = 1;
-
     TimeSource time_source = 2;
 }
 
