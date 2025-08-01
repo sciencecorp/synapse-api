@@ -46,7 +46,8 @@ enum TimeSource {
     TIME_SOURCE_STEADY_CLOCK = 1;
   
     // Calculate timestamps based on sample counter and sampling rate
-    // timestamp = (sample_counter / sample_rate) + initial_steady_clock_value
+    // counter_diff = (counter - first_counter)
+    // timestamp_ns = (counter_diff * 1e9 / sample_rate) + initial_steady_clock_value
     // Where initial_steady_clock_value = get_steady_clock_now() at start
     TIME_SOURCE_SAMPLE_COUNTER = 2;
 }
