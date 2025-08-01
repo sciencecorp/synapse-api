@@ -57,6 +57,7 @@ message NodeStatus {
     StreamInStatus stream_in = 5;
     ElectricalStimulationStatus electrical_stimulation = 6;
     ApplicationNodeStatus application = 7;
+    OpticalStimulationStatus optical_stimulation = 8;
   }
 }
 
