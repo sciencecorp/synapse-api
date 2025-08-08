@@ -8,8 +8,6 @@ import "api/nodes/electrical_stimulation.proto";
 import "api/nodes/optical_stimulation.proto";
 import "api/nodes/spike_detector.proto";
 import "api/nodes/spectral_filter.proto";
-import "api/nodes/stream_out.proto";
-import "api/nodes/stream_in.proto";
 import "api/nodes/disk_writer.proto";
 import "api/nodes/spike_source.proto";
 import "api/nodes/spike_binner.proto";
@@ -17,8 +15,10 @@ import "api/nodes/application.proto";
 
 enum NodeType {
   kNodeTypeUnknown = 0;
-  kStreamIn = 1;
-  kStreamOut = 2;
+  // kStreamIn = 1;
+  // kStreamOut = 2;
+  reserved 1, 2;
+
   kBroadbandSource = 3;
   kElectricalStimulation = 4;
   kOpticalStimulation = 5;
@@ -33,9 +33,12 @@ enum NodeType {
 message NodeConfig {
   NodeType type = 1;
   uint32 id = 2;
+  
+  // StreamOutConfig stream_out = 3;
+  // StreamInConfig stream_in = 4;
+  reserved 3, 4;
+  
   oneof config {
-    StreamOutConfig stream_out = 3;
-    StreamInConfig stream_in = 4;
     BroadbandSourceConfig broadband_source = 5;
     ElectricalStimulationConfig electrical_stimulation = 6;
     OpticalStimulationConfig optical_stimulation = 8;
@@ -51,10 +54,12 @@ message NodeConfig {
 message NodeStatus {
   NodeType type = 1;
   uint32 id = 2;
+
+  // StreamOutStatus stream_out = 3;
+  // StreamInStatus stream_in = 5;
+  reserved 3, 5;
   oneof status {
-    StreamOutStatus stream_out = 3;
     BroadbandSourceStatus broadband_source = 4;
-    StreamInStatus stream_in = 5;
     ElectricalStimulationStatus electrical_stimulation = 6;
     ApplicationNodeStatus application = 7;
     OpticalStimulationStatus optical_stimulation = 8;
