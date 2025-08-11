@@ -41,7 +41,8 @@ message Status {
   string message = 1;
   StatusCode code = 2;
   DeviceState state = 3;
-  repeated NodeSocket sockets = 4;
+  // repeated NodeSocket sockets = 4;
+  reserved 4;
   DevicePower power = 5;
   DeviceStorage storage = 6;
   SignalChainStatus signal_chain = 7;

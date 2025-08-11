@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package synapse;
 
-import "api/datatype.proto";
 import "api/nodes/broadband_source.proto";
 import "api/nodes/electrical_stimulation.proto";
 import "api/nodes/optical_stimulation.proto";
@@ -69,13 +68,4 @@ message NodeStatus {
 message NodeConnection {
   uint32 src_node_id = 1;
   uint32 dst_node_id = 2;
-}
-
-message NodeSocket {
-  uint32 node_id = 1;
-  string bind = 2;
-  DataType data_type = 3;
-  NodeType type = 4;
-  string label = 5;
-  repeated uint32 shape = 6;
 }
