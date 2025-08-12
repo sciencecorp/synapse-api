@@ -20,5 +20,5 @@ message DiskWriterStatus {
   uint64 available_disk_space_bytes = 4;
 
   // Current write performance for this node, megabits/sec
-  float current_bitrate_mbps = 8;
+  float current_bitrate_mbps = 5;
 }
