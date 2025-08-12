@@ -62,6 +62,7 @@ message NodeStatus {
     ElectricalStimulationStatus electrical_stimulation = 6;
     ApplicationNodeStatus application = 7;
     OpticalStimulationStatus optical_stimulation = 8;
+    DiskWriterStatus disk_writer = 10;
   }
 }
 
