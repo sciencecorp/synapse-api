@@ -5,3 +5,20 @@ package synapse;
 message DiskWriterConfig {
   string filename = 1;
 }
+
+message DiskWriterStatus {
+  // The output path of the file on the path of the sftp directory
+  string output_path = 1;
+
+  // How many bytes has been written for this file?
+  uint64 bytes_written = 2;
+
+  // Are we currently writing or are we stopped?
+  bool is_writing = 3;
+
+  // How many bytes are available for us to use
+  uint64 available_disk_space_bytes = 4;
+
+  // Current write performance for this node, megabits/sec
+  float current_bitrate_mbps = 5;
+}
