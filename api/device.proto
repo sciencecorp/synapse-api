@@ -41,6 +41,9 @@ message DeviceConfiguration {
 message DeviceSettings {
     string name = 1;
     TimeSource time_source = 2;
+
+    // If configurable, the desired FPGA clock frequency in hz
+    uint32 fpga_clock_freq_hz = 3;
 }
 
 message GetSettingsQuery {
