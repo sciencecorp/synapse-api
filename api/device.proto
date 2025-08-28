@@ -22,6 +22,10 @@ message Peripheral {
 }
 
 message DeviceInfo {
+    enum Type {
+      kScifi = 0;
+      kSciwave = 1;
+    }
     string name = 1;
     string serial = 2;
     uint32 synapse_version = 3;
@@ -29,6 +33,7 @@ message DeviceInfo {
     Status status = 5;
     repeated Peripheral peripherals = 6;
     DeviceConfiguration configuration = 7;
+    Type device_type = 8;
 }
 
 message DeviceConfiguration {
