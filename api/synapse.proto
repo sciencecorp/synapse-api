@@ -20,6 +20,7 @@ service SynapseDevice {
   rpc StreamQuery(StreamQueryRequest) returns (stream StreamQueryResponse) {}
 
   rpc DeployApp(stream AppPackageChunk) returns (stream AppDeployResponse) {}
+  rpc ListApps(ListAppsRequest) returns (ListAppsResponse) {}
 
   rpc ListFiles(google.protobuf.Empty) returns (ListFilesResponse) {}
   rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
