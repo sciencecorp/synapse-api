@@ -53,3 +53,19 @@ message AppPerformanceSummary {
   uint64 timestamp_ns = 1;
   repeated FunctionProfile function_profiles = 2;
 }
+
+// Information about an installed application
+message AppInfo {
+  // Application name (e.g., "synapse-example-app")
+  string name = 1;
+
+  // Installed version
+  string version = 2;
+}
+
+message ListAppsRequest {
+}
+
+message ListAppsResponse {
+  repeated AppInfo apps = 1;
+}
