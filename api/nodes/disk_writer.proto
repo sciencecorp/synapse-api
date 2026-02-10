@@ -3,14 +3,11 @@ syntax = "proto3";
 package synapse;
 
 message DiskWriterConfig {
-  enum WriteTarget {
-    kUnknown = 0;
-    kDisk = 1;
-    kSdCard = 2;
-  }
-
   string filename = 1;
-  WriteTarget write_target = 2;
+
+  // String specifying storage device, decided by the implementer
+  // e.g. "disk", "sdcard1", "sdcard2"
+  string storage_device_name = 2;
 }
 
 message DiskWriterStatus {
