@@ -4,10 +4,7 @@ package synapse;
 
 message DiskWriterConfig {
   string filename = 1;
-
-  // String specifying storage device, decided by the implementer
-  // e.g. "disk", "sdcard1", "sdcard2"
-  string storage_device_name = 2;
+  uint32 storage_device_id = 2;
 }
 
 message DiskWriterStatus {
