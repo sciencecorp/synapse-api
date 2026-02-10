@@ -23,16 +23,15 @@ enum DeviceState {
   kError = 4;
 }
 
-message StorageDeviceStatus {
-  // Human-readable name decided by implementer, 
-  // can be dynamic on runtime, e.g. "disk", "sdcard1", "sdcard2"
+message StorageDevice {
   string name = 1;
-  float total_gb = 2;
-  float used_gb = 3;
+  uint32 storage_device_id = 2;
+  float total_gb = 3;
+  float used_gb = 4;
 }
 
 message DeviceStorage {
-  repeated StorageDeviceStatus storage_devices;
+  repeated StorageDevice storage_devices = 1;
 }
 
 message DevicePower {
