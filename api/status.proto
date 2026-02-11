@@ -23,9 +23,16 @@ enum DeviceState {
   kError = 4;
 }
 
+message StorageDevice {
+  string name = 1;
+  uint32 storage_device_id = 2;
+  float total_gb = 3;
+  float used_gb = 4;
+}
+
 message DeviceStorage {
-  float total_gb = 1;
-  float used_gb = 2;
+  reserved 1, 2;
+  repeated StorageDevice storage_devices = 3;
 }
 
 message DevicePower {

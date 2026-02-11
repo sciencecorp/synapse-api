@@ -4,6 +4,7 @@ package synapse;
 
 message DiskWriterConfig {
   string filename = 1;
+  uint32 storage_device_id = 2;
 }
 
 message DiskWriterStatus {
