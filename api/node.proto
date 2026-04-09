@@ -11,6 +11,8 @@ import "api/nodes/disk_writer.proto";
 import "api/nodes/spike_source.proto";
 import "api/nodes/spike_binner.proto";
 import "api/nodes/application.proto";
+import "api/nodes/image_source.proto";
+import "api/nodes/image_sink.proto";
 
 enum NodeType {
   kNodeTypeUnknown = 0;
@@ -27,6 +29,8 @@ enum NodeType {
   kDiskWriter = 9;
   kSpikeBinner = 10;
   kApplication = 11;
+  kImageSource = 12;
+  kImageSink = 13;
 }
 
 message NodeConfig {
@@ -47,6 +51,8 @@ message NodeConfig {
     SpikeSourceConfig spike_source = 12;
     SpikeBinnerConfig spike_binner = 13;
     ApplicationNodeConfig application = 14;
+    ImageSourceConfig image_source = 15;
+    ImageSinkConfig image_sink = 16;
   }
 }
 
@@ -63,6 +69,8 @@ message NodeStatus {
     ApplicationNodeStatus application = 7;
     OpticalStimulationStatus optical_stimulation = 8;
     DiskWriterStatus disk_writer = 10;
+    ImageSourceStatus image_source = 11;
+    ImageSinkStatus image_sink = 12;
   }
 }
 

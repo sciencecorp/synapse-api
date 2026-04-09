@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package synapse;
+
+message ImageSinkConfig {
+  uint32 peripheral_id = 1;
+  uint32 frame_rate_hz = 2;
+}
+
+message ImageSinkStatus {
+  uint64 frames_exported = 1;
+  float actual_rate_hz = 2;
+  float latency_ms = 3;
+}

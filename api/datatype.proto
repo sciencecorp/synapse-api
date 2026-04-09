@@ -107,3 +107,24 @@ message AnnotatedTensor {
   // e.g. pipeline latencies
   map<string, google.protobuf.Value> metadata = 2;
 }
+
+enum PixelFormat {
+  kPixelFormatUnknown = 0;
+  kYUV420_888 = 1;
+  kRGB888 = 2;
+  kRGBA8888 = 3;
+  kGrayscale8 = 4;
+  kRAW10 = 5;
+  kRAW16 = 6;
+  kNV12 = 7;
+  kNV21 = 8;
+}
+
+message ImageFrame {
+  uint32 width = 1;
+  uint32 height = 2;
+  PixelFormat format = 3;
+  uint64 sequence_number = 4;
+  uint64 timestamp_ns = 5;
+  bytes data = 6;
+}

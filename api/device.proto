@@ -13,6 +13,7 @@ message Peripheral {
       kElectricalStimulation = 2;
       kOpticalStimulation = 3;
       kSpikeSource = 4;
+      kCamera = 5;
     }
     string name = 1;
     string vendor = 2;

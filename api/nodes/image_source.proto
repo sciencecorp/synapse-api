@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package synapse;
+
+import "api/datatype.proto";
+
+message ImageSourceConfig {
+  uint32 peripheral_id = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+  PixelFormat format = 4;
+  uint32 frame_rate_hz = 5;
+}
+
+message ImageSourceStatus {
+  uint64 frames_produced = 1;
+  uint64 frames_dropped = 2;
+}
