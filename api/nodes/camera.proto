@@ -4,7 +4,7 @@ package synapse;
 
 import "api/datatype.proto";
 
-message ImageSourceConfig {
+message CameraConfig {
   uint32 peripheral_id = 1;
   uint32 width = 2;
   uint32 height = 3;
@@ -12,7 +12,7 @@ message ImageSourceConfig {
   uint32 frame_rate_hz = 5;
 }
 
-message ImageSourceStatus {
+message CameraStatus {
   uint64 frames_produced = 1;
   uint64 frames_dropped = 2;
 }
