@@ -124,7 +124,9 @@ message ImageFrame {
   uint32 width = 1;
   uint32 height = 2;
   PixelFormat format = 3;
-  uint64 sequence_number = 4;
-  uint64 timestamp_ns = 5;
-  bytes data = 6;
+  uint32 sample_rate_hz = 4;
+  uint64 sequence_number = 5;
+  uint64 timestamp_ns = 6;
+  uint64 unix_timestamp_ns = 7;
+  bytes data = 8;
 }
