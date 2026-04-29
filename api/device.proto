@@ -4,7 +4,8 @@ package synapse;
 
 import "api/node.proto";
 import "api/status.proto";
-import "api/time.proto";
+
+import "google/protobuf/struct.proto";
 
 message Peripheral {
     enum Type {
@@ -38,13 +39,35 @@ message DeviceConfiguration {
 }
 
 
-// Device settings that are configurable by the user
+// Device settings that are configurable by the user.
+// Keys and value types are defined by the device and advertised via
+// GetSettingsResponse.schema.
 message DeviceSettings {
-    string name = 1;
-    TimeSource time_source = 2;
+    reserved 1, 2, 3;
+    reserved "name", "time_source", "fpga_clock_freq_hz";
 
-    // If configurable, the desired FPGA clock frequency in hz
-    uint32 fpga_clock_freq_hz = 3;
+    google.protobuf.Struct values = 4;
+}
+
+// Describes a single settings key that the device accepts.
+message SettingDescriptor {
+    enum Kind {
+        kKindUnknown = 0;
+        kString = 1;
+        kInt = 2;
+        kDouble = 3;
+        kBool = 4;
+        kEnum = 5;
+    }
+
+    string name = 1;
+    string description = 2;
+    Kind kind = 3;
+    google.protobuf.Value default_value = 4;
+
+    // Allowed values for enum-kind or discrete-set settings
+    // (e.g. valid FPGA clock frequencies).
+    repeated google.protobuf.Value allowed_values = 5;
 }
 
 message GetSettingsQuery {
@@ -53,10 +76,13 @@ message GetSettingsQuery {
 
 message GetSettingsResponse {
     DeviceSettings settings = 1;
+
+    // Describes the keys this device accepts in DeviceSettings.values.
+    repeated SettingDescriptor schema = 2;
 }
 
 message UpdateDeviceSettingsRequest {
-    // If a field isn't populated, it will not be changed
+    // Only keys present in settings.values will be updated.
     DeviceSettings settings = 1;
 }
 
