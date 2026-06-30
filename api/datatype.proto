@@ -118,6 +118,8 @@ enum PixelFormat {
   kRAW16 = 6;
   kNV12 = 7;
   kNV21 = 8;
+  kJPEG = 9;
+  kH264 = 10;
 }
 
 message ImageFrame {
