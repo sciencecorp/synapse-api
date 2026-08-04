@@ -3,6 +3,8 @@ syntax = "proto3";
 package synapse;
 
 message DisplayMap {
+  // row_map[i] == index of physical row on the peripheral
+  // likewise for col_map
   repeated uint32 row_map = 1;
   repeated uint32 col_map = 2;
 }
