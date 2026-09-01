@@ -9,6 +9,7 @@ import "api/status.proto";
 import "api/files.proto";
 import "api/logging.proto";
 import "api/app.proto";
+import "api/auth.proto";
 import "api/device.proto";
 
 service SynapseDevice {
@@ -31,4 +32,9 @@ service SynapseDevice {
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
 
   rpc UpdateDeviceSettings(UpdateDeviceSettingsRequest) returns (UpdateDeviceSettingsResponse) {}
+
+  // Request an auth token. Open (requires no token, by definition). The first
+  // stream message carries the code to display; the second carries the human's
+  // decision.
+  rpc RequestAuth(AuthRequest) returns (stream AuthEvent) {}
 }

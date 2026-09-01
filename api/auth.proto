@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package synapse;
+
+// Pairing handshake. A caller asks for a token; a human at the device's
+// touchscreen approves or denies after comparing a short code shown both on the
+// screen and in the caller's terminal.
+message AuthRequest {
+  // Human-readable identification of the caller, shown on the touchscreen so
+  // the approver knows who is asking. Conventionally "user@hostname".
+  // Truncated to 64 bytes by the server.
+  string client_label = 1;
+}
+
+message AuthChallenge {
+  // Six decimal digits. The caller displays this; the approver compares it with
+  // the code on the device screen before tapping Allow.
+  string code = 1;
+  uint32 expires_in_sec = 2;
+}
+
+message AuthResult {
+  bool granted = 1;
+  // Set iff granted. Opaque; the caller stores it and sends it back as
+  // x-scifi-auth-token metadata on later calls.
+  string token = 2;
+  // Set iff denied: "denied" or "timed out".
+  string reason = 3;
+}
+
+// First event on the stream is always a challenge; the second and last is
+// always a result.
+message AuthEvent {
+  oneof event {
+    AuthChallenge challenge = 1;
+    AuthResult result = 2;
+  }
+}
