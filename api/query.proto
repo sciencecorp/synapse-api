@@ -43,6 +43,37 @@ message SelfTestResponse {
   repeated SelfTestItem tests = 2;
 }
 
+// Begin wireless-power bring-up for the implant (scIO -> scIR). The device
+// derives the controller address during peripheral discovery, so this carries
+// no addressing.
+message WptBringupQuery {
+}
+
+// Stop wireless power and confirm the coil is de-energized.
+message WptBringupStopQuery {
+}
+
+// A single progress sample from the bring-up sequence.
+message WptBringupStatus {
+  // Bring-up state and, while running, the state-local substep. Reported as
+  // the raw device values so a firmware that adds states does not need a
+  // schema change here; the human-readable form is in
+  // StreamQueryResponse.message.
+  uint32 state = 1;
+  uint32 substep = 2;
+
+  // Implant coil voltage, millivolts. Absent until the implant reports it.
+  int32 coil_mv = 3;
+
+  // Transmit coil current, microamps.
+  int32 current_ua = 4;
+
+  // Set only on the final message of a stop: the device has confirmed every
+  // output stage is off. If this is false at the end of a stop, the coil may
+  // still be energized and the operator must be told.
+  bool outputs_off_confirmed = 5;
+}
+
 message QueryRequest {
   enum QueryType {
     kNone = 0;
@@ -51,6 +82,8 @@ message QueryRequest {
     kSelfTest = 3;
     kListTaps = 4;
     kGetSettings = 5;
+    kWptBringup = 6;
+    kWptBringupStop = 7;
   }
   QueryType query_type = 1;
   oneof query {
@@ -59,6 +92,8 @@ message QueryRequest {
     SelfTestQuery self_test_query = 4;
     ListTapsQuery list_taps_query = 5;
     GetSettingsQuery get_settings_query = 6;
+    WptBringupQuery wpt_bringup_query = 7;
+    WptBringupStopQuery wpt_bringup_stop_query = 8;
   }
 }
 
@@ -88,5 +123,6 @@ message StreamQueryResponse {
   oneof response {
     ImpedanceResponse impedance = 4;
     SelfTestResponse self_test = 5;
+    WptBringupStatus wpt_bringup = 6;
   }
 }
