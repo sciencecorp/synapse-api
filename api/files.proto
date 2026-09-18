@@ -4,43 +4,79 @@ package synapse;
 
 import "api/status.proto";
 
+// File transfer over gRPC.
+//
+// These replace SFTP as the transport for device files. The point is not
+// convenience: SFTP needed its own password, so a device had two independent
+// credentials. Going through the SynapseDevice service means file access is
+// governed by the same pairing token as everything else, and the SFTP password
+// disappears.
+//
+// Paths are relative to the device's data root and must stay inside it. A
+// leading "/" is accepted and means the data root, not the filesystem root --
+// unlike SFTP, which served the whole filesystem to any authenticated user.
+
+message ListFilesRequest {
+  // Directory to list, relative to the data root. Empty means the root itself.
+  string path = 1;
+  // Recurse into subdirectories. Recordings are written as a directory per run,
+  // so listing one level is usually what you want.
+  bool recursive = 2;
+}
+
 message ListFilesResponse {
   message File {
-    string name = 1;
-    uint32 size = 2;
-    uint32 created = 3;
-    uint32 modified = 4;
-    string type = 5;
+    // Path relative to the data root, so it can be passed straight back to
+    // ReadFile or DeleteFile without the caller reassembling anything.
+    string path = 1;
+    // uint64, not uint32: the largest recording measured on a device was
+    // 3.39 GB, already within 21% of uint32's 4 GB ceiling. A slightly longer
+    // run would have silently reported a truncated size.
+    uint64 size = 2;
+    // Unix seconds as int64. uint32 would break in 2038, and these outlive it.
+    int64 created = 3;
+    int64 modified = 4;
+    bool is_dir = 5;
   }
   repeated File files = 1;
 }
 
+// Client-streaming: the first message carries `path` and no data, then each
+// following message carries a chunk. The whole-file-in-one-message form this
+// replaced could not exceed gRPC's 4 MB default message limit, which made it
+// unusable for anything this device actually produces.
 message WriteFileRequest {
-  string name = 1;
+  string path = 1;
   bytes data = 2;
 }
 
 message WriteFileResponse {
-  string name = 1;
+  string path = 1;
   uint64 bytes_written = 2;
 }
 
 message ReadFileRequest {
-  string name = 1;
+  string path = 1;
+  // Resume point. A multi-gigabyte download that dies at 90% should not have
+  // to start over.
+  uint64 start_offset = 2;
 }
 
 message ReadFileResponse {
-  string name = 1;
+  string path = 1;
   bytes data = 2;
-  uint32 start_offset = 3;
-  uint32 file_total_length = 4;
+  uint64 start_offset = 3;
+  uint64 file_total_length = 4;
 }
 
 message DeleteFileRequest {
-  string name = 1;
+  string path = 1;
+  // Required to delete a directory, so a mistyped path cannot take a whole
+  // recording with it.
+  bool recursive = 2;
 }
 
 message DeleteFileResponse {
-  string name = 1;
+  string path = 1;
   StatusCode status_code = 2;
 }
