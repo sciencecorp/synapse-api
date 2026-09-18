@@ -22,7 +22,7 @@ message AuthChallenge {
 message AuthResult {
   bool granted = 1;
   // Set iff granted. Opaque; the caller stores it and sends it back as
-  // x-scifi-auth-token metadata on later calls.
+  // an "authorization: Bearer <token>" header on later calls (RFC 6750).
   string token = 2;
   // Set iff denied: "denied" or "timed out".
   string reason = 3;
