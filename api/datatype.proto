@@ -132,3 +132,35 @@ message ImageFrame {
   uint64 unix_timestamp_ns = 7;
   bytes data = 8;
 }
+
+// One time bin of spike counts, as produced by a SpikeBinner node.
+//
+// The binner counts the spike events it receives from an upstream
+// SpikeDetector and emits one of these per bin, on a fixed cadence -- a bin in
+// which nothing fired is still sent, with all counts zero, so a consumer can
+// tell "silent" apart from "not streaming".
+message SpiketrainFrame {
+  // Monotonic timestamp of the START of this bin, on the same clock as
+  // BroadbandFrame.timestamp_ns.
+  uint64 timestamp_ns = 1;
+
+  // Monotonically increasing bin counter, useful to detect dropped bins.
+  uint64 sequence_number = 2;
+
+  // Width of this bin in milliseconds, as configured on the binner.
+  uint32 bin_size_ms = 3;
+
+  // Number of spikes counted in this bin, one entry per channel, in the same
+  // order as channel_ids.
+  repeated uint32 spike_counts = 4;
+
+  // The channel each spike_counts entry belongs to. When empty, spike_counts
+  // is indexed by contiguous channel id 0..n-1 (same convention as
+  // BroadbandFrame.channel_ranges being empty).
+  repeated uint32 channel_ids = 5;
+
+  // For legacy reasons, and syncing with other parts of the system, the current
+  // steady clock in unix time as reported by the system
+  // e.g. std::chrono::steady_clock::now().time_since_epoch()
+  uint64 unix_timestamp_ns = 6;
+}
