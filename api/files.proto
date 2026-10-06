@@ -18,7 +18,16 @@ message ListFilesResponse {
     uint64 size = 2;
     int64 created = 3;
     int64 modified = 4;
-    bool is_dir = 5;
+
+    // 5 was `string type`, which shipped in @science-corporation/synapse 2.4.0.
+    // is_dir does not reuse it: a bool is a varint and a string is
+    // length-delimited, so a client generated against 2.4.0 would hit a
+    // wire-type mismatch on field 5 rather than simply ignoring a field it
+    // does not know. Reserved so nothing can claim the slot again.
+    reserved 5;
+    reserved "type";
+
+    bool is_dir = 6;
   }
   repeated File files = 1;
 }
