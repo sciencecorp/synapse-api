@@ -34,3 +34,27 @@ message AuthEvent {
     AuthResult result = 2;
   }
 }
+
+// A client this device has approved. The touchscreen's own client is never
+// listed: revoking it would lock the device's own screen out.
+message AuthClient {
+  // Stable handle for RevokeAuthClient. Not the token, and cannot be used as one.
+  string id = 1;
+  string label = 2;
+  int64 approved_at_ms = 3;
+  int64 last_seen_ms = 4;
+  // 0 if the token never expires.
+  int64 expires_at_ms = 5;
+}
+
+message ListAuthClientsRequest {}
+
+message ListAuthClientsResponse {
+  repeated AuthClient clients = 1;
+}
+
+message RevokeAuthClientRequest {
+  string id = 1;
+}
+
+message RevokeAuthClientResponse {}
