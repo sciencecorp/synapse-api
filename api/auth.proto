@@ -45,6 +45,8 @@ message AuthClient {
   int64 last_seen_ms = 4;
   // 0 if the token never expires.
   int64 expires_at_ms = 5;
+  // Days from approval until the token expires; 0 = never.
+  uint32 lifetime_days = 6;
 }
 
 message ListAuthClientsRequest {}
@@ -58,3 +60,11 @@ message RevokeAuthClientRequest {
 }
 
 message RevokeAuthClientResponse {}
+
+message SetAuthClientLifetimeRequest {
+  string id = 1;
+  // Days from approval until the token expires; 0 = never.
+  uint32 lifetime_days = 2;
+}
+
+message SetAuthClientLifetimeResponse {}
