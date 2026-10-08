@@ -4,7 +4,7 @@ package synapse;
 
 // Pairing handshake. A caller asks for a token; a human at the device 
 // approves or denies after comparing a short code shown both on the
-// screen and in the caller's terminal
+// screen and in the caller's client
 message AuthRequest {
   // Human-readable identification of the caller, shown on the touchscreen so
   // the approver knows who is asking. Conventionally "user@hostname".
@@ -35,16 +35,17 @@ message AuthEvent {
   }
 }
 
-// A client this device has approved. The touchscreen's own client is never
-// listed: revoking it would lock the device's own screen out.
+// A client this device has approved.
 message AuthClient {
   // Stable handle for RevokeAuthClient. Not the token, and cannot be used as one.
   string id = 1;
   string label = 2;
   int64 approved_at_ms = 3;
   int64 last_seen_ms = 4;
+
   // 0 if the token never expires.
   int64 expires_at_ms = 5;
+
   // Days from approval until the token expires; 0 = never.
   uint32 lifetime_days = 6;
 }
@@ -63,6 +64,7 @@ message RevokeAuthClientResponse {}
 
 message SetAuthClientLifetimeRequest {
   string id = 1;
+
   // Days from approval until the token expires; 0 = never.
   uint32 lifetime_days = 2;
 }
