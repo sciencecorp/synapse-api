@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package synapse;
 
-// Pairing handshake. A caller asks for a token; a human at the device 
+// Pairing handshake. A caller asks for a token; a human at the device
 // approves or denies after comparing a short code shown both on the
 // screen and in the caller's client
 message AuthRequest {
@@ -20,11 +20,11 @@ message AuthChallenge {
 message AuthResult {
   bool granted = 1;
 
-  // Set iff granted. Opaque; the caller stores it and sends it back as
-  // an "authorization: Bearer <token>" header on later calls (RFC 6750).
+  // Only set when granted. Sent back as an "authorization: Bearer <token>"
+  // header on later calls.
   string token = 2;
 
-  // Set iff denied: "denied" or "timed out".
+  // Only set when not granted: "denied" or "timed out".
   string reason = 3;
 }
 
@@ -40,13 +40,13 @@ message AuthClient {
   // Stable handle for RevokeAuthClient. Not the token, and cannot be used as one.
   string id = 1;
   string label = 2;
-  int64 approved_at_ms = 3;
-  int64 last_seen_ms = 4;
+  uint64 approved_at_ms = 3;
+  uint64 last_seen_ms = 4;
 
   // 0 if the token never expires.
-  int64 expires_at_ms = 5;
+  uint64 expires_at_ms = 5;
 
-  // Days from approval until the token expires; 0 = never.
+  // Days from approval until the token expires, 0 if never.
   uint32 lifetime_days = 6;
 }
 
@@ -65,7 +65,7 @@ message RevokeAuthClientResponse {}
 message SetAuthClientLifetimeRequest {
   string id = 1;
 
-  // Days from approval until the token expires; 0 = never.
+  // Days from approval until the token expires, 0 if never.
   uint32 lifetime_days = 2;
 }
 
