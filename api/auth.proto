@@ -35,38 +35,8 @@ message AuthEvent {
   }
 }
 
-// A client this device has approved.
-message AuthClient {
-  // Stable handle for RevokeAuthClient. Not the token, and cannot be used as one.
-  string id = 1;
-  string label = 2;
-  uint64 approved_at_ms = 3;
-  uint64 last_seen_ms = 4;
+// Revokes the caller's own token. Managing other paired clients is only
+// possible from the device itself.
+message RevokeAuthRequest {}
 
-  // 0 if the token never expires.
-  uint64 expires_at_ms = 5;
-
-  // Days from approval until the token expires, 0 if never.
-  uint32 lifetime_days = 6;
-}
-
-message ListAuthClientsRequest {}
-
-message ListAuthClientsResponse {
-  repeated AuthClient clients = 1;
-}
-
-message RevokeAuthClientRequest {
-  string id = 1;
-}
-
-message RevokeAuthClientResponse {}
-
-message SetAuthClientLifetimeRequest {
-  string id = 1;
-
-  // Days from approval until the token expires, 0 if never.
-  uint32 lifetime_days = 2;
-}
-
-message SetAuthClientLifetimeResponse {}
+message RevokeAuthResponse {}

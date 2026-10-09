@@ -34,7 +34,5 @@ service SynapseDevice {
   rpc UpdateDeviceSettings(UpdateDeviceSettingsRequest) returns (UpdateDeviceSettingsResponse) {}
 
   rpc RequestAuth(AuthRequest) returns (stream AuthEvent) {}
-  rpc ListAuthClients(ListAuthClientsRequest) returns (ListAuthClientsResponse) {}
-  rpc RevokeAuthClient(RevokeAuthClientRequest) returns (RevokeAuthClientResponse) {}
-  rpc SetAuthClientLifetime(SetAuthClientLifetimeRequest) returns (SetAuthClientLifetimeResponse) {}
+  rpc RevokeAuth(RevokeAuthRequest) returns (RevokeAuthResponse) {}
 }
