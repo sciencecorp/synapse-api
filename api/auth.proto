@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package synapse;
+
+// Pairing handshake. A caller asks for a token; a human at the device
+// approves or denies after comparing a short code shown both on the
+// screen and in the caller's client
+message AuthRequest {
+  // Human-readable identification of the caller, shown on the touchscreen so
+  // the approver knows who is asking. Conventionally "user@hostname".
+  string client_label = 1;
+}
+
+message AuthChallenge {
+  // Code shown on device when it receives the auth request
+  string code = 1;
+  uint32 expires_in_sec = 2;
+}
+
+message AuthResult {
+  bool granted = 1;
+
+  // Only set when granted. Sent back as an "authorization: Bearer <token>"
+  // header on later calls.
+  string token = 2;
+
+  // Only set when not granted: "denied" or "timed out".
+  string reason = 3;
+}
+
+message AuthEvent {
+  oneof event {
+    AuthChallenge challenge = 1;
+    AuthResult result = 2;
+  }
+}
+
+// Revokes the caller's own token. Managing other paired clients is only
+// possible from the device itself.
+message RevokeAuthRequest {}
+
+message RevokeAuthResponse {}

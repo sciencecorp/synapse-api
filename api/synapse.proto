@@ -9,6 +9,7 @@ import "api/status.proto";
 import "api/files.proto";
 import "api/logging.proto";
 import "api/app.proto";
+import "api/auth.proto";
 import "api/device.proto";
 
 service SynapseDevice {
@@ -22,8 +23,8 @@ service SynapseDevice {
   rpc DeployApp(stream AppPackageChunk) returns (stream AppDeployResponse) {}
   rpc ListApps(ListAppsRequest) returns (ListAppsResponse) {}
 
-  rpc ListFiles(google.protobuf.Empty) returns (ListFilesResponse) {}
-  rpc WriteFile(WriteFileRequest) returns (WriteFileResponse) {}
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {}
+  rpc WriteFile(stream WriteFileRequest) returns (WriteFileResponse) {}
   rpc ReadFile(ReadFileRequest) returns (stream ReadFileResponse) {}
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {}
 
@@ -31,4 +32,7 @@ service SynapseDevice {
   rpc TailLogs(TailLogsRequest) returns (stream LogEntry) {}
 
   rpc UpdateDeviceSettings(UpdateDeviceSettingsRequest) returns (UpdateDeviceSettingsResponse) {}
+
+  rpc RequestAuth(AuthRequest) returns (stream AuthEvent) {}
+  rpc RevokeAuth(RevokeAuthRequest) returns (RevokeAuthResponse) {}
 }

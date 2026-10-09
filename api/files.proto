@@ -4,43 +4,60 @@ package synapse;
 
 import "api/status.proto";
 
+message ListFilesRequest {
+  // Directory to list, relative to the data root. Empty means the root itself.
+  string path = 1;
+
+  // Recurse into subdirectories.
+  bool recursive = 2;
+}
+
 message ListFilesResponse {
   message File {
-    string name = 1;
-    uint32 size = 2;
-    uint32 created = 3;
-    uint32 modified = 4;
-    string type = 5;
+    string path = 1;
+    uint64 size = 2;
+    uint64 created = 3;
+    uint64 modified = 4;
+
+    // Was string type; not reused because the wire type differs.
+    reserved 5;
+    reserved "type";
+
+    bool is_dir = 6;
   }
   repeated File files = 1;
 }
 
 message WriteFileRequest {
-  string name = 1;
+  string path = 1;
   bytes data = 2;
 }
 
 message WriteFileResponse {
-  string name = 1;
+  string path = 1;
   uint64 bytes_written = 2;
 }
 
 message ReadFileRequest {
-  string name = 1;
+  string path = 1;
+
+  // Resume point for interrupted downloads
+  uint64 start_offset = 2;
 }
 
 message ReadFileResponse {
-  string name = 1;
+  string path = 1;
   bytes data = 2;
-  uint32 start_offset = 3;
-  uint32 file_total_length = 4;
+  uint64 start_offset = 3;
+  uint64 file_total_length = 4;
 }
 
 message DeleteFileRequest {
-  string name = 1;
+  string path = 1;
+  bool recursive = 2;
 }
 
 message DeleteFileResponse {
-  string name = 1;
+  string path = 1;
   StatusCode status_code = 2;
 }
