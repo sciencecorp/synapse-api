@@ -6,7 +6,7 @@ package synapse;
 // approves or denies after comparing a short code shown both on the
 // screen and in the caller's client
 message AuthRequest {
-  // Human-readable identification of the caller, shown on the touchscreen so
+  // Human-readable identification of the caller, shown on the device so
   // the approver knows who is asking. Conventionally "user@hostname".
   string client_label = 1;
 }
