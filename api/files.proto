@@ -15,11 +15,10 @@ message ListFilesRequest {
 message ListFilesResponse {
   message File {
     string path = 1;
-    uint64 size = 2;
+    uint64 size_bytes = 2;
     uint64 created = 3;
     uint64 modified = 4;
 
-    // Was string type; not reused because the wire type differs.
     reserved 5;
     reserved "type";
 
@@ -42,14 +41,14 @@ message ReadFileRequest {
   string path = 1;
 
   // Resume point for interrupted downloads
-  uint64 start_offset = 2;
+  uint64 start_offset_bytes = 2;
 }
 
 message ReadFileResponse {
   string path = 1;
   bytes data = 2;
-  uint64 start_offset = 3;
-  uint64 file_total_length = 4;
+  uint64 start_offset_bytes = 3;
+  uint64 file_size_bytes = 4;
 }
 
 message DeleteFileRequest {
