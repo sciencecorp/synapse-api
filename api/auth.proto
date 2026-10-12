@@ -35,8 +35,7 @@ message AuthEvent {
   }
 }
 
-// Revokes the caller's own token. Managing other paired clients is only
-// possible from the device itself.
+// Revokes the caller's own token.
 message RevokeAuthRequest {}
 
 message RevokeAuthResponse {}
