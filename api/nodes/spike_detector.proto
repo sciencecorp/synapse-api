@@ -7,7 +7,10 @@ message TemplateMatcher {
 }
 
 message Thresholder {
-  uint32 threshold_uV = 1;
+  // Signed: the sign sets the crossing direction. Negative fires when a sample
+  // goes below it (extracellular spikes), positive when a sample goes above it.
+  // Zero is invalid. Wire-compatible with the old uint32 for positive values.
+  int32 threshold_uV = 1;
 }
 
 message SpikeDetectorConfig {
