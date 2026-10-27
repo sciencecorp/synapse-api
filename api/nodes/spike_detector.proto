@@ -7,7 +7,7 @@ message TemplateMatcher {
 }
 
 message Thresholder {
-  uint32 threshold_uV = 1;
+  int32 threshold_uV = 1;
 }
 
 message SpikeDetectorConfig {
