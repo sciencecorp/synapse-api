@@ -68,6 +68,31 @@ message NodeStatus {
     DiskWriterStatus disk_writer = 10;
     CameraStatus camera = 11;
   }
+
+  // Common health for every node type. Always set by servers that support it;
+  // absent on older firmware.
+  NodeHealth health = 12;
+}
+
+// Liveness and data-path metrics for one node. Throughput and latency are
+// averaged over the server's most recent measurement window, which spans the
+// time between status reads (at least one second).
+message NodeHealth {
+  // The node's worker is running and has completed a pass recently (data in,
+  // data out, or a successful hardware read). False when the device is stopped
+  // or the worker has stalled or exited.
+  bool operational = 1;
+
+  // Bytes per second entering the node: the serialized size of messages
+  // received from the upstream node, or, for a source node, the raw sample
+  // bytes read from its hardware (so it can differ from downstream nodes).
+  double throughput_bytes_per_second = 2;
+
+  // Mean time from data entering the node to the resulting output leaving it
+  // (published downstream, written to disk, or sent to hardware). For nodes
+  // that batch their input, measured from the oldest item in the batch.
+  // 0 when nothing left the node during the window.
+  double latency_us = 3;
 }
 
 message NodeConnection {
