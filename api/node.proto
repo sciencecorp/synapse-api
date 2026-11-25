@@ -74,25 +74,45 @@ message NodeStatus {
   NodeHealth health = 12;
 }
 
-// Liveness and data-path metrics for one node. Throughput and latency are
-// averaged over the server's most recent measurement window, which spans the
-// time between status reads (at least one second).
+// Liveness and data-path metrics for one node. Rates and latencies cover the
+// server's most recent measurement window: the time between status reads, and
+// at least one second. Counters run from when the node last started.
 message NodeHealth {
   // The node's worker is running and has completed a pass recently (data in,
   // data out, or a successful hardware read). False when the device is stopped
   // or the worker has stalled or exited.
   bool operational = 1;
 
-  // Bytes per second entering the node: the serialized size of messages
-  // received from the upstream node, or, for a source node, the raw sample
-  // bytes read from its hardware (so it can differ from downstream nodes).
-  double throughput_bytes_per_second = 2;
+  // Pre-release single-rate layout; never shipped in a release.
+  reserved 2, 3;
 
-  // Mean time from data entering the node to the resulting output leaving it
-  // (published downstream, written to disk, or sent to hardware). For nodes
-  // that batch their input, measured from the oldest item in the batch.
-  // 0 when nothing left the node during the window.
-  double latency_us = 3;
+  // Bytes per second entering the node: serialized messages received from the
+  // upstream node or, for a source node, raw sample bytes read from hardware.
+  double in_bytes_per_second = 4;
+
+  // Bytes per second leaving the node: serialized messages published
+  // downstream or, for a sink, bytes handed to its disk writer or hardware.
+  double out_bytes_per_second = 5;
+
+  // Time from data entering the node to the resulting output leaving it, over
+  // the window. For nodes that batch input, measured from the oldest item in
+  // the batch. All 0 when nothing left the node during the window.
+  double latency_mean_us = 6;
+  double latency_p99_us = 7;
+  double latency_max_us = 8;
+
+  // Messages this node lost itself: failed to parse, process, or deliver.
+  uint32 dropped_messages = 9;
+
+  // Gaps in the sequence numbers of this node's input: messages that went
+  // missing upstream before reaching it. Meaningful only when
+  // detects_input_gaps is true (the input carries sequence numbers).
+  uint32 missing_input_messages = 10;
+  bool detects_input_gaps = 11;
+
+  // Seconds since the node last received or emitted data (or since it started,
+  // if it has done neither).
+  double seconds_since_last_data = 12;
 }
 
 message NodeConnection {
